@@ -12,6 +12,7 @@
                 "provider": "Provider",
                 "link": "Link",
                 "statusType": "Status Type",
+                "program": "Program",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

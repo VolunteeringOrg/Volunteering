@@ -1,0 +1,55 @@
+
+<div>
+    <h2><span data-translate="myappApp.program.detail.title">Program</span> {{vm.program.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="myappApp.program.providerId">Provider Id</span></dt>
+        <dd>
+            <span>{{vm.program.providerId}}</span>
+        </dd>
+        <dt><span data-translate="myappApp.program.name">Name</span></dt>
+        <dd>
+            <span>{{vm.program.name}}</span>
+        </dd>
+        <dt><span data-translate="myappApp.program.highlight">Highlight</span></dt>
+        <dd>
+            <span>{{vm.program.highlight}}</span>
+        </dd>
+        <dt><span data-translate="myappApp.program.dateTo">Date To</span></dt>
+        <dd>
+            <span>{{vm.program.dateTo | date:'medium'}}</span>
+        </dd>
+        <dt><span data-translate="myappApp.program.dateFrom">Date From</span></dt>
+        <dd>
+            <span>{{vm.program.dateFrom | date:'medium'}}</span>
+        </dd>
+        <dt><span data-translate="myappApp.program.statusTypeId">Status Type Id</span></dt>
+        <dd>
+            <span>{{vm.program.statusTypeId}}</span>
+        </dd>
+        <dt><span data-translate="myappApp.program.shareProgram">Share Program</span></dt>
+        <dd>
+            <span>{{vm.program.shareProgram}}</span>
+        </dd>
+        <dt><span data-translate="myappApp.program.fk_provider_program">Fk Provider Program</span></dt>
+        <dd>
+            <a ui-sref="provider-detail({id:vm.program.fk_provider_program.id})">{{vm.program.fk_provider_program.id}}</a>
+        </dd>
+        <dt><span data-translate="myappApp.program.fk_statustype_program">Fk Statustype Program</span></dt>
+        <dd>
+            <a ui-sref="status-type-detail({id:vm.program.fk_statustype_program.id})">{{vm.program.fk_statustype_program.id}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="program-detail.edit({id:vm.program.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

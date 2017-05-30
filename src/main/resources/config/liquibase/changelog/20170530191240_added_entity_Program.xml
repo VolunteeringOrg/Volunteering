@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <property name="now" value="now()" dbms="h2"/>
+
+    <property name="now" value="sysdate" dbms="oracle"/>
+
+    <property name="floatType" value="float4" dbms="postgresql, h2"/>
+    <property name="floatType" value="float" dbms="mysql, oracle, mssql"/>
+
+    <!--
+        Added the entity Program.
+    -->
+    <changeSet id="20170530191240-1" author="jhipster">
+        <createTable tableName="program">
+            <column name="id" type="bigint" autoIncrement="${autoIncrement}">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="provider_id" type="integer">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="name" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="highlight" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="date_to" type="timestamp">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="date_from" type="timestamp">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="status_type_id" type="integer">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="share_program" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="fk_provider_program_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="fk_statustype_program_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+
+            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
+        </createTable>
+        <dropDefaultValue tableName="program" columnName="date_to" columnDataType="datetime"/>
+        <dropDefaultValue tableName="program" columnName="date_from" columnDataType="datetime"/>
+        
+    </changeSet>
+</databaseChangeLog>

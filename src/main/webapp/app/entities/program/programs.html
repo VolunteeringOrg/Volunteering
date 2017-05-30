@@ -1,0 +1,97 @@
+<div>
+    <h2 data-translate="myappApp.program.home.title">Programs</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="program.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span class="hidden-xs-down"  data-translate="myappApp.program.home.createLabel">
+                        Create new Program
+                    </span>
+                </button>
+            </div>
+            <div class="col-xs-8 no-padding-right">
+                <form name="searchForm" class="form-inline">
+                    <div class="input-group pull-right" >
+                        <input type="text" class="form-control" ng-model="vm.searchQuery" id="searchQuery" placeholder="{{ 'myappApp.program.home.search' | translate }}">
+                        <span  class="input-group-btn width-min" >
+                            <button class="btn btn-info" ng-click="vm.search(vm.searchQuery)">
+                                <span class="glyphicon glyphicon-search"></span>
+                            </button>
+                        </span>
+                        <span class="input-group-btn width-min" ng-if="vm.currentSearch">
+                            <button class="btn btn-info" ng-click="vm.clear()">
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </button>
+                        </span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
+                    <th jh-sort-by="id"><span data-translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="providerId"><span data-translate="myappApp.program.providerId">Provider Id</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="name"><span data-translate="myappApp.program.name">Name</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="highlight"><span data-translate="myappApp.program.highlight">Highlight</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="dateTo"><span data-translate="myappApp.program.dateTo">Date To</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="dateFrom"><span data-translate="myappApp.program.dateFrom">Date From</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="statusTypeId"><span data-translate="myappApp.program.statusTypeId">Status Type Id</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="shareProgram"><span data-translate="myappApp.program.shareProgram">Share Program</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="fk_provider_program.id"><span data-translate="myappApp.program.fk_provider_program">Fk Provider Program</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="fk_statustype_program.id"><span data-translate="myappApp.program.fk_statustype_program">Fk Statustype Program</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="program in vm.programs track by program.id">
+                    <td><a ui-sref="program-detail({id:program.id})">{{program.id}}</a></td>
+                    <td>{{program.providerId}}</td>
+                    <td>{{program.name}}</td>
+                    <td>{{program.highlight}}</td>
+                    <td>{{program.dateTo | date:'medium'}}</td>
+                    <td>{{program.dateFrom | date:'medium'}}</td>
+                    <td>{{program.statusTypeId}}</td>
+                    <td>{{program.shareProgram}}</td>
+                    <td>
+                        <a ui-sref="provider-detail({id:program.fk_provider_program.id})">{{program.fk_provider_program.id}}</a>
+                    </td>
+                    <td>
+                        <a ui-sref="status-type-detail({id:program.fk_statustype_program.id})">{{program.fk_statustype_program.id}}</a>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="program-detail({id:program.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.view"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="program.edit({id:program.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.edit"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="program.delete({id:program.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.delete"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="text-center">
+        <jhi-item-count page="vm.page" total="vm.queryCount" items-per-page="vm.itemsPerPage"></jhi-item-count>
+    </div>
+    <uib-pager total-items="vm.totalItems" ng-model="vm.page" ng-change="vm.transition()"></uib-pager>
+</div>
