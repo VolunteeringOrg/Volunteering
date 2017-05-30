@@ -1,0 +1,26 @@
+{
+    "myappApp": {
+        "address" : {
+            "home": {
+                "title": "Addresses",
+                "createLabel": "Dodaj Address",
+                "createOrEditLabel": "Dodaj lub edytuj: Address",
+                "search": "Szukaj Address"
+            },
+            "created": "Utworzono nowy Address z identyfikatorem {{ param }}",
+            "updated": "Uaktualniono Address z identyfikatorem {{ param }}",
+            "deleted": "Usunięto Address z identyfikatorem {{ param }}",
+            "delete": {
+                "question": "Czy na pewno chcesz usunąć Address {{ id }}?"
+            },
+            "detail": {
+                "title": "Address"
+            },
+            "email": "Email",
+            "street": "Street",
+            "city": "City",
+            "postalCode": "Postal Code",
+            "country": "Country"
+        }
+    }
+}
