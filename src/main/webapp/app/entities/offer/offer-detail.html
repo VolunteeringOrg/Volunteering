@@ -1,0 +1,83 @@
+
+<div>
+    <h2><span data-translate="myappApp.offer.detail.title">Offer</span> {{vm.offer.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="myappApp.offer.programId">Program Id</span></dt>
+        <dd>
+            <span>{{vm.offer.programId}}</span>
+        </dd>
+        <dt><span data-translate="myappApp.offer.name">Name</span></dt>
+        <dd>
+            <span>{{vm.offer.name}}</span>
+        </dd>
+        <dt><span data-translate="myappApp.offer.description">Description</span></dt>
+        <dd>
+            <span>{{vm.offer.description}}</span>
+        </dd>
+        <dt><span data-translate="myappApp.offer.volunteerType">Volunteer Type</span></dt>
+        <dd>
+            <span>{{vm.offer.volunteerType}}</span>
+        </dd>
+        <dt><span data-translate="myappApp.offer.initialNoVacancies">Initial No Vacancies</span></dt>
+        <dd>
+            <span>{{vm.offer.initialNoVacancies}}</span>
+        </dd>
+        <dt><span data-translate="myappApp.offer.actualNoVacancies">Actual No Vacancies</span></dt>
+        <dd>
+            <span>{{vm.offer.actualNoVacancies}}</span>
+        </dd>
+        <dt><span data-translate="myappApp.offer.statusTypeId">Status Type Id</span></dt>
+        <dd>
+            <span>{{vm.offer.statusTypeId}}</span>
+        </dd>
+        <dt><span data-translate="myappApp.offer.dateFrom">Date From</span></dt>
+        <dd>
+            <span>{{vm.offer.dateFrom | date:'medium'}}</span>
+        </dd>
+        <dt><span data-translate="myappApp.offer.dateTo">Date To</span></dt>
+        <dd>
+            <span>{{vm.offer.dateTo | date:'medium'}}</span>
+        </dd>
+        <dt><span data-translate="myappApp.offer.workhoursPerMonth">Workhours Per Month</span></dt>
+        <dd>
+            <span>{{vm.offer.workhoursPerMonth}}</span>
+        </dd>
+        <dt><span data-translate="myappApp.offer.termId">Term Id</span></dt>
+        <dd>
+            <span>{{vm.offer.termId}}</span>
+        </dd>
+        <dt><span data-translate="myappApp.offer.daytime">Daytime</span></dt>
+        <dd>
+            <span>{{vm.offer.daytime}}</span>
+        </dd>
+        <dt><span data-translate="myappApp.offer.workhours">Workhours</span></dt>
+        <dd>
+            <span>{{vm.offer.workhours}}</span>
+        </dd>
+        <dt><span data-translate="myappApp.offer.fk_program_offer">Fk Program Offer</span></dt>
+        <dd>
+            <a ui-sref="program-detail({id:vm.offer.fk_program_offer.id})">{{vm.offer.fk_program_offer.id}}</a>
+        </dd>
+        <dt><span data-translate="myappApp.offer.fk_statustype_offer">Fk Statustype Offer</span></dt>
+        <dd>
+            <a ui-sref="status-type-detail({id:vm.offer.fk_statustype_offer.id})">{{vm.offer.fk_statustype_offer.id}}</a>
+        </dd>
+        <dt><span data-translate="myappApp.offer.fk_term_offer">Fk Term Offer</span></dt>
+        <dd>
+            <a ui-sref="term-detail({id:vm.offer.fk_term_offer.id})">{{vm.offer.fk_term_offer.id}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="offer-detail.edit({id:vm.offer.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

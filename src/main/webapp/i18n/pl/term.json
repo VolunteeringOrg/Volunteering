@@ -1,0 +1,22 @@
+{
+    "myappApp": {
+        "term" : {
+            "home": {
+                "title": "Terms",
+                "createLabel": "Dodaj Term",
+                "createOrEditLabel": "Dodaj lub edytuj: Term",
+                "search": "Szukaj Term"
+            },
+            "created": "Utworzono nowy Term z identyfikatorem {{ param }}",
+            "updated": "Uaktualniono Term z identyfikatorem {{ param }}",
+            "deleted": "Usunięto Term z identyfikatorem {{ param }}",
+            "delete": {
+                "question": "Czy na pewno chcesz usunąć Term {{ id }}?"
+            },
+            "detail": {
+                "title": "Term"
+            },
+            "value": "Value"
+        }
+    }
+}

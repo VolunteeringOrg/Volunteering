@@ -1,0 +1,223 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()" show-validation>
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myOfferLabel" data-translate="myappApp.offer.home.createOrEditLabel">Create or edit a Offer</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.offer.id">
+            <label for="id" data-translate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.offer.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="myappApp.offer.programId" for="field_programId">Program Id</label>
+            <input type="number" class="form-control" name="programId" id="field_programId"
+                    ng-model="vm.offer.programId"
+                    required/>
+            <div ng-show="editForm.programId.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.programId.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.programId.$error.number" data-translate="entity.validation.number">
+                    This field should be a number.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="myappApp.offer.name" for="field_name">Name</label>
+            <input type="text" class="form-control" name="name" id="field_name"
+                    ng-model="vm.offer.name"
+                    required ng-maxlength="255"/>
+            <div ng-show="editForm.name.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.name.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.name.$error.maxlength" data-translate="entity.validation.maxlength" translate-value-max="255">
+                    This field cannot be longer than 255 characters.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="myappApp.offer.description" for="field_description">Description</label>
+            <input type="text" class="form-control" name="description" id="field_description"
+                    ng-model="vm.offer.description"
+                    ng-maxlength="1000"/>
+            <div ng-show="editForm.description.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.description.$error.maxlength" data-translate="entity.validation.maxlength" translate-value-max="1000">
+                    This field cannot be longer than 1000 characters.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="myappApp.offer.volunteerType" for="field_volunteerType">Volunteer Type</label>
+            <input type="text" class="form-control" name="volunteerType" id="field_volunteerType"
+                    ng-model="vm.offer.volunteerType"
+                    ng-maxlength="255"/>
+            <div ng-show="editForm.volunteerType.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.volunteerType.$error.maxlength" data-translate="entity.validation.maxlength" translate-value-max="255">
+                    This field cannot be longer than 255 characters.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="myappApp.offer.initialNoVacancies" for="field_initialNoVacancies">Initial No Vacancies</label>
+            <input type="number" class="form-control" name="initialNoVacancies" id="field_initialNoVacancies"
+                    ng-model="vm.offer.initialNoVacancies"
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="myappApp.offer.actualNoVacancies" for="field_actualNoVacancies">Actual No Vacancies</label>
+            <input type="number" class="form-control" name="actualNoVacancies" id="field_actualNoVacancies"
+                    ng-model="vm.offer.actualNoVacancies"
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="myappApp.offer.statusTypeId" for="field_statusTypeId">Status Type Id</label>
+            <input type="number" class="form-control" name="statusTypeId" id="field_statusTypeId"
+                    ng-model="vm.offer.statusTypeId"
+                    required/>
+            <div ng-show="editForm.statusTypeId.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.statusTypeId.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.statusTypeId.$error.number" data-translate="entity.validation.number">
+                    This field should be a number.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="myappApp.offer.dateFrom" for="field_dateFrom">Date From</label>
+                <div class="input-group">
+                    <input id="field_dateFrom" type="text" class="form-control" name="dateFrom" datetime-picker="{{dateformat}}" ng-model="vm.offer.dateFrom" is-open="vm.datePickerOpenStatus.dateFrom"
+                    required/>
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('dateFrom')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+            <div ng-show="editForm.dateFrom.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.dateFrom.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.dateFrom.$error.ZonedDateTimelocal" data-translate="entity.validation.ZonedDateTimelocal">
+                    This field should be a date and time.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="myappApp.offer.dateTo" for="field_dateTo">Date To</label>
+                <div class="input-group">
+                    <input id="field_dateTo" type="text" class="form-control" name="dateTo" datetime-picker="{{dateformat}}" ng-model="vm.offer.dateTo" is-open="vm.datePickerOpenStatus.dateTo"
+                    required/>
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('dateTo')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+            <div ng-show="editForm.dateTo.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.dateTo.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.dateTo.$error.ZonedDateTimelocal" data-translate="entity.validation.ZonedDateTimelocal">
+                    This field should be a date and time.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="myappApp.offer.workhoursPerMonth" for="field_workhoursPerMonth">Workhours Per Month</label>
+            <input type="number" class="form-control" name="workhoursPerMonth" id="field_workhoursPerMonth"
+                    ng-model="vm.offer.workhoursPerMonth"
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="myappApp.offer.termId" for="field_termId">Term Id</label>
+            <input type="number" class="form-control" name="termId" id="field_termId"
+                    ng-model="vm.offer.termId"
+                    required/>
+            <div ng-show="editForm.termId.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.termId.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.termId.$error.number" data-translate="entity.validation.number">
+                    This field should be a number.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="myappApp.offer.daytime" for="field_daytime">Daytime</label>
+            <input type="text" class="form-control" name="daytime" id="field_daytime"
+                    ng-model="vm.offer.daytime"
+                    required ng-maxlength="255"/>
+            <div ng-show="editForm.daytime.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.daytime.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.daytime.$error.maxlength" data-translate="entity.validation.maxlength" translate-value-max="255">
+                    This field cannot be longer than 255 characters.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="myappApp.offer.workhours" for="field_workhours">Workhours</label>
+            <input type="text" class="form-control" name="workhours" id="field_workhours"
+                    ng-model="vm.offer.workhours"
+                    ng-maxlength="255"/>
+            <div ng-show="editForm.workhours.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.workhours.$error.maxlength" data-translate="entity.validation.maxlength" translate-value-max="255">
+                    This field cannot be longer than 255 characters.
+                </p>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label data-translate="myappApp.offer.fk_program_offer" for="field_fk_program_offer">Fk Program Offer</label>
+            <select class="form-control" id="field_fk_program_offer" name="fk_program_offer" ng-model="vm.offer.fk_program_offer" ng-options="program as program.id for program in vm.programs track by program.id">
+                <option value=""></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label data-translate="myappApp.offer.fk_statustype_offer" for="field_fk_statustype_offer">Fk Statustype Offer</label>
+            <select class="form-control" id="field_fk_statustype_offer" name="fk_statustype_offer" ng-model="vm.offer.fk_statustype_offer" ng-options="statusType as statusType.id for statusType in vm.statustypes track by statusType.id" required>
+            </select>
+        </div>
+        <div ng-show="editForm.fk_statustype_offer.$invalid">
+            <p class="help-block"
+                ng-show="editForm.fk_statustype_offer.$error.required" data-translate="entity.validation.required">
+                This field is required.
+            </p>
+        </div>
+        <div class="form-group">
+            <label data-translate="myappApp.offer.fk_term_offer" for="field_fk_term_offer">Fk Term Offer</label>
+            <select class="form-control" id="field_fk_term_offer" name="fk_term_offer" ng-model="vm.offer.fk_term_offer" ng-options="term as term.id for term in vm.terms track by term.id">
+                <option value=""></option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span data-translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span data-translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

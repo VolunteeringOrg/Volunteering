@@ -1,0 +1,20 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "value",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": "255"
+        }
+    ],
+    "changelogDate": "20170530192702",
+    "dto": "no",
+    "service": "no",
+    "entityTableName": "term",
+    "pagination": "pager"
+}
