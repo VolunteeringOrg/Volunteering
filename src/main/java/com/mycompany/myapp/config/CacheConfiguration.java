@@ -47,6 +47,9 @@ public class CacheConfiguration {
             cm.createCache(com.mycompany.myapp.domain.Address.class.getName(), jcacheConfiguration);
             cm.createCache(com.mycompany.myapp.domain.LinkType.class.getName(), jcacheConfiguration);
             cm.createCache(com.mycompany.myapp.domain.Provider.class.getName(), jcacheConfiguration);
+            cm.createCache(com.mycompany.myapp.domain.Link.class.getName(), jcacheConfiguration);
+            cm.createCache(com.mycompany.myapp.domain.Link.class.getName() + ".ns", jcacheConfiguration);
+            cm.createCache(com.mycompany.myapp.domain.StatusType.class.getName(), jcacheConfiguration);
             // jhipster-needle-ehcache-add-entry
         };
     }

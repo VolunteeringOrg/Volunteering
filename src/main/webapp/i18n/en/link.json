@@ -1,0 +1,26 @@
+{
+    "myappApp": {
+        "link" : {
+            "home": {
+                "title": "Links",
+                "createLabel": "Create a new Link",
+                "createOrEditLabel": "Create or edit a Link",
+                "search": "Search for Link"
+            },
+            "created": "A new Link is created with identifier {{ param }}",
+            "updated": "A Link is updated with identifier {{ param }}",
+            "deleted": "A Link is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Link {{ id }}?"
+            },
+            "detail": {
+                "title": "Link"
+            },
+            "providerId": "Provider Id",
+            "linkTypeId": "Link Type Id",
+            "value": "Value",
+            "fk_provider_link": "Fk Provider Link",
+            "fk_linktype_link": "Fk Linktype Link"
+        }
+    }
+}

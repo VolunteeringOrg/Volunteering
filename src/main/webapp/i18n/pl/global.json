@@ -10,6 +10,8 @@
                 "address": "Address",
                 "linkType": "Link Type",
                 "provider": "Provider",
+                "link": "Link",
+                "statusType": "Status Type",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

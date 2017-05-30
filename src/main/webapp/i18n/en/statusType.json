@@ -1,0 +1,22 @@
+{
+    "myappApp": {
+        "statusType" : {
+            "home": {
+                "title": "Status Types",
+                "createLabel": "Create a new Status Type",
+                "createOrEditLabel": "Create or edit a Status Type",
+                "search": "Search for Status Type"
+            },
+            "created": "A new Status Type is created with identifier {{ param }}",
+            "updated": "A Status Type is updated with identifier {{ param }}",
+            "deleted": "A Status Type is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Status Type {{ id }}?"
+            },
+            "detail": {
+                "title": "Status Type"
+            },
+            "value": "Value"
+        }
+    }
+}
