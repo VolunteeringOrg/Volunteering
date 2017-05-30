@@ -3,14 +3,14 @@
 
     angular
         .module('myappApp')
-        .controller('AddressDialogController', AddressDialogController);
+        .controller('LinkTypeDialogController', LinkTypeDialogController);
 
-    AddressDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Address'];
+    LinkTypeDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'LinkType'];
 
-    function AddressDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Address) {
+    function LinkTypeDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, LinkType) {
         var vm = this;
 
-        vm.address = entity;
+        vm.linkType = entity;
         vm.clear = clear;
         vm.save = save;
 
@@ -24,15 +24,15 @@
 
         function save () {
             vm.isSaving = true;
-            if (vm.address.id !== null) {
-                Address.update(vm.address, onSaveSuccess, onSaveError);
+            if (vm.linkType.id !== null) {
+                LinkType.update(vm.linkType, onSaveSuccess, onSaveError);
             } else {
-                Address.save(vm.address, onSaveSuccess, onSaveError);
+                LinkType.save(vm.linkType, onSaveSuccess, onSaveError);
             }
         }
 
         function onSaveSuccess (result) {
-            $scope.$emit('myappApp:addressUpdate', result);
+            $scope.$emit('myappApp:linkTypeUpdate', result);
             $uibModalInstance.close(result);
             vm.isSaving = false;
         }

@@ -7,9 +7,9 @@ import org.slf4j.LoggerFactory
 import scala.concurrent.duration._
 
 /**
- * Performance test for the Address entity.
+ * Performance test for the LinkType entity.
  */
-class AddressGatlingTest extends Simulation {
+class LinkTypeGatlingTest extends Simulation {
 
     val context: LoggerContext = LoggerFactory.getILoggerFactory.asInstanceOf[LoggerContext]
     // Log all HTTP requests
@@ -42,7 +42,7 @@ class AddressGatlingTest extends Simulation {
         "Authorization" -> "${access_token}"
     )
 
-    val scn = scenario("Test the Address entity")
+    val scn = scenario("Test the LinkType entity")
         .exec(http("First unauthenticated request")
         .get("/api/account")
         .headers(headers_http)
@@ -60,26 +60,26 @@ class AddressGatlingTest extends Simulation {
         .check(status.is(200)))
         .pause(10)
         .repeat(2) {
-            exec(http("Get all addresses")
-            .get("/api/addresses")
+            exec(http("Get all linkTypes")
+            .get("/api/link-types")
             .headers(headers_http_authenticated)
             .check(status.is(200)))
             .pause(10 seconds, 20 seconds)
-            .exec(http("Create new address")
-            .post("/api/addresses")
+            .exec(http("Create new linkType")
+            .post("/api/link-types")
             .headers(headers_http_authenticated)
-            .body(StringBody("""{"id":null, "email":"SAMPLE_TEXT", "street":"SAMPLE_TEXT", "city":"SAMPLE_TEXT", "postalCode":"SAMPLE_TEXT", "country":"SAMPLE_TEXT"}""")).asJSON
+            .body(StringBody("""{"id":null, "name":"SAMPLE_TEXT", "logoFilepath":"SAMPLE_TEXT"}""")).asJSON
             .check(status.is(201))
-            .check(headerRegex("Location", "(.*)").saveAs("new_address_url"))).exitHereIfFailed
+            .check(headerRegex("Location", "(.*)").saveAs("new_linkType_url"))).exitHereIfFailed
             .pause(10)
             .repeat(5) {
-                exec(http("Get created address")
-                .get("${new_address_url}")
+                exec(http("Get created linkType")
+                .get("${new_linkType_url}")
                 .headers(headers_http_authenticated))
                 .pause(10)
             }
-            .exec(http("Delete created address")
-            .delete("${new_address_url}")
+            .exec(http("Delete created linkType")
+            .delete("${new_linkType_url}")
             .headers(headers_http_authenticated))
             .pause(10)
         }

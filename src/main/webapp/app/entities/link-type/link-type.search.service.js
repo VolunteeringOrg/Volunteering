@@ -3,12 +3,12 @@
 
     angular
         .module('myappApp')
-        .factory('AddressSearch', AddressSearch);
+        .factory('LinkTypeSearch', LinkTypeSearch);
 
-    AddressSearch.$inject = ['$resource'];
+    LinkTypeSearch.$inject = ['$resource'];
 
-    function AddressSearch($resource) {
-        var resourceUrl =  'api/_search/addresses/:id';
+    function LinkTypeSearch($resource) {
+        var resourceUrl =  'api/_search/link-types/:id';
 
         return $resource(resourceUrl, {}, {
             'query': { method: 'GET', isArray: true}

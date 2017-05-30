@@ -3,11 +3,11 @@
 
     angular
         .module('myappApp')
-        .controller('AddressController', AddressController);
+        .controller('LinkTypeController', LinkTypeController);
 
-    AddressController.$inject = ['$state', 'Address', 'AddressSearch', 'ParseLinks', 'AlertService', 'paginationConstants', 'pagingParams'];
+    LinkTypeController.$inject = ['$state', 'LinkType', 'LinkTypeSearch', 'ParseLinks', 'AlertService', 'paginationConstants', 'pagingParams'];
 
-    function AddressController($state, Address, AddressSearch, ParseLinks, AlertService, paginationConstants, pagingParams) {
+    function LinkTypeController($state, LinkType, LinkTypeSearch, ParseLinks, AlertService, paginationConstants, pagingParams) {
 
         var vm = this;
 
@@ -26,14 +26,14 @@
 
         function loadAll () {
             if (pagingParams.search) {
-                AddressSearch.query({
+                LinkTypeSearch.query({
                     query: pagingParams.search,
                     page: pagingParams.page - 1,
                     size: vm.itemsPerPage,
                     sort: sort()
                 }, onSuccess, onError);
             } else {
-                Address.query({
+                LinkType.query({
                     page: pagingParams.page - 1,
                     size: vm.itemsPerPage,
                     sort: sort()
@@ -50,7 +50,7 @@
                 vm.links = ParseLinks.parse(headers('link'));
                 vm.totalItems = headers('X-Total-Count');
                 vm.queryCount = vm.totalItems;
-                vm.addresses = data;
+                vm.linkTypes = data;
                 vm.page = pagingParams.page;
             }
             function onError(error) {

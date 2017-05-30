@@ -1,20 +1,20 @@
 <div>
-    <h2 data-translate="myappApp.address.home.title">Addresses</h2>
+    <h2 data-translate="myappApp.linkType.home.title">Link Types</h2>
     <jhi-alert></jhi-alert>
     <div class="container-fluid">
         <div class="row">
             <div class="col-xs-4 no-padding-left">
-                <button class="btn btn-primary" ui-sref="address.new" >
+                <button class="btn btn-primary" ui-sref="link-type.new" >
                     <span class="glyphicon glyphicon-plus"></span>
-                    <span class="hidden-xs-down"  data-translate="myappApp.address.home.createLabel">
-                        Create new Address
+                    <span class="hidden-xs-down"  data-translate="myappApp.linkType.home.createLabel">
+                        Create new Link Type
                     </span>
                 </button>
             </div>
             <div class="col-xs-8 no-padding-right">
                 <form name="searchForm" class="form-inline">
                     <div class="input-group pull-right" >
-                        <input type="text" class="form-control" ng-model="vm.searchQuery" id="searchQuery" placeholder="{{ 'myappApp.address.home.search' | translate }}">
+                        <input type="text" class="form-control" ng-model="vm.searchQuery" id="searchQuery" placeholder="{{ 'myappApp.linkType.home.search' | translate }}">
                         <span  class="input-group-btn width-min" >
                             <button class="btn btn-info" ng-click="vm.search(vm.searchQuery)">
                                 <span class="glyphicon glyphicon-search"></span>
@@ -36,38 +36,32 @@
             <thead>
                 <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
                     <th jh-sort-by="id"><span data-translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="email"><span data-translate="myappApp.address.email">Email</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="street"><span data-translate="myappApp.address.street">Street</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="city"><span data-translate="myappApp.address.city">City</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="postalCode"><span data-translate="myappApp.address.postalCode">Postal Code</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="country"><span data-translate="myappApp.address.country">Country</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="name"><span data-translate="myappApp.linkType.name">Name</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="logoFilepath"><span data-translate="myappApp.linkType.logoFilepath">Logo Filepath</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="address in vm.addresses track by address.id">
-                    <td><a ui-sref="address-detail({id:address.id})">{{address.id}}</a></td>
-                    <td>{{address.email}}</td>
-                    <td>{{address.street}}</td>
-                    <td>{{address.city}}</td>
-                    <td>{{address.postalCode}}</td>
-                    <td>{{address.country}}</td>
+                <tr ng-repeat="linkType in vm.linkTypes track by linkType.id">
+                    <td><a ui-sref="link-type-detail({id:linkType.id})">{{linkType.id}}</a></td>
+                    <td>{{linkType.name}}</td>
+                    <td>{{linkType.logoFilepath}}</td>
                     <td class="text-right">
                         <div class="btn-group flex-btn-group-container">
                             <button type="submit"
-                                    ui-sref="address-detail({id:address.id})"
+                                    ui-sref="link-type-detail({id:linkType.id})"
                                     class="btn btn-info btn-sm">
                                 <span class="glyphicon glyphicon-eye-open"></span>
                                 <span class="hidden-sm-down" data-translate="entity.action.view"></span>
                             </button>
                             <button type="submit"
-                                    ui-sref="address.edit({id:address.id})"
+                                    ui-sref="link-type.edit({id:linkType.id})"
                                     class="btn btn-primary btn-sm">
                                 <span class="glyphicon glyphicon-pencil"></span>
                                 <span class="hidden-sm-down" data-translate="entity.action.edit"></span>
                             </button>
                             <button type="submit"
-                                    ui-sref="address.delete({id:address.id})"
+                                    ui-sref="link-type.delete({id:linkType.id})"
                                     class="btn btn-danger btn-sm">
                                 <span class="glyphicon glyphicon-remove-circle"></span>
                                 <span class="hidden-sm-down" data-translate="entity.action.delete"></span>

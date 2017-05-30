@@ -2,12 +2,12 @@
     'use strict';
     angular
         .module('myappApp')
-        .factory('Address', Address);
+        .factory('LinkType', LinkType);
 
-    Address.$inject = ['$resource'];
+    LinkType.$inject = ['$resource'];
 
-    function Address ($resource) {
-        var resourceUrl =  'api/addresses/:id';
+    function LinkType ($resource) {
+        var resourceUrl =  'api/link-types/:id';
 
         return $resource(resourceUrl, {}, {
             'query': { method: 'GET', isArray: true},

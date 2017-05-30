@@ -1,0 +1,23 @@
+{
+    "myappApp": {
+        "linkType" : {
+            "home": {
+                "title": "Link Types",
+                "createLabel": "Dodaj Link Type",
+                "createOrEditLabel": "Dodaj lub edytuj: Link Type",
+                "search": "Szukaj Link Type"
+            },
+            "created": "Utworzono nowy Link Type z identyfikatorem {{ param }}",
+            "updated": "Uaktualniono Link Type z identyfikatorem {{ param }}",
+            "deleted": "Usunięto Link Type z identyfikatorem {{ param }}",
+            "delete": {
+                "question": "Czy na pewno chcesz usunąć Link Type {{ id }}?"
+            },
+            "detail": {
+                "title": "Link Type"
+            },
+            "name": "Name",
+            "logoFilepath": "Logo Filepath"
+        }
+    }
+}

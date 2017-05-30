@@ -8,6 +8,7 @@
             "entities": {
                 "main": "Encje",
                 "address": "Address",
+                "linkType": "Link Type",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

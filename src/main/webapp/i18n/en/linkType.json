@@ -1,0 +1,23 @@
+{
+    "myappApp": {
+        "linkType" : {
+            "home": {
+                "title": "Link Types",
+                "createLabel": "Create a new Link Type",
+                "createOrEditLabel": "Create or edit a Link Type",
+                "search": "Search for Link Type"
+            },
+            "created": "A new Link Type is created with identifier {{ param }}",
+            "updated": "A Link Type is updated with identifier {{ param }}",
+            "deleted": "A Link Type is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Link Type {{ id }}?"
+            },
+            "detail": {
+                "title": "Link Type"
+            },
+            "name": "Name",
+            "logoFilepath": "Logo Filepath"
+        }
+    }
+}

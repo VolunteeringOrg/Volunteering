@@ -3,14 +3,14 @@
 
     angular
         .module('myappApp')
-        .controller('AddressDeleteController',AddressDeleteController);
+        .controller('LinkTypeDeleteController',LinkTypeDeleteController);
 
-    AddressDeleteController.$inject = ['$uibModalInstance', 'entity', 'Address'];
+    LinkTypeDeleteController.$inject = ['$uibModalInstance', 'entity', 'LinkType'];
 
-    function AddressDeleteController($uibModalInstance, entity, Address) {
+    function LinkTypeDeleteController($uibModalInstance, entity, LinkType) {
         var vm = this;
 
-        vm.address = entity;
+        vm.linkType = entity;
         vm.clear = clear;
         vm.confirmDelete = confirmDelete;
 
@@ -19,7 +19,7 @@
         }
 
         function confirmDelete (id) {
-            Address.delete({id: id},
+            LinkType.delete({id: id},
                 function () {
                     $uibModalInstance.close(true);
                 });

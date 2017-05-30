@@ -9,17 +9,17 @@
 
     function stateConfig($stateProvider) {
         $stateProvider
-        .state('address', {
+        .state('link-type', {
             parent: 'entity',
-            url: '/address?page&sort&search',
+            url: '/link-type?page&sort&search',
             data: {
                 authorities: ['ROLE_USER'],
-                pageTitle: 'myappApp.address.home.title'
+                pageTitle: 'myappApp.linkType.home.title'
             },
             views: {
                 'content@': {
-                    templateUrl: 'app/entities/address/addresses.html',
-                    controller: 'AddressController',
+                    templateUrl: 'app/entities/link-type/link-types.html',
+                    controller: 'LinkTypeController',
                     controllerAs: 'vm'
                 }
             },
@@ -45,37 +45,37 @@
                     };
                 }],
                 translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
-                    $translatePartialLoader.addPart('address');
+                    $translatePartialLoader.addPart('linkType');
                     $translatePartialLoader.addPart('global');
                     return $translate.refresh();
                 }]
             }
         })
-        .state('address-detail', {
-            parent: 'address',
-            url: '/address/{id}',
+        .state('link-type-detail', {
+            parent: 'link-type',
+            url: '/link-type/{id}',
             data: {
                 authorities: ['ROLE_USER'],
-                pageTitle: 'myappApp.address.detail.title'
+                pageTitle: 'myappApp.linkType.detail.title'
             },
             views: {
                 'content@': {
-                    templateUrl: 'app/entities/address/address-detail.html',
-                    controller: 'AddressDetailController',
+                    templateUrl: 'app/entities/link-type/link-type-detail.html',
+                    controller: 'LinkTypeDetailController',
                     controllerAs: 'vm'
                 }
             },
             resolve: {
                 translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
-                    $translatePartialLoader.addPart('address');
+                    $translatePartialLoader.addPart('linkType');
                     return $translate.refresh();
                 }],
-                entity: ['$stateParams', 'Address', function($stateParams, Address) {
-                    return Address.get({id : $stateParams.id}).$promise;
+                entity: ['$stateParams', 'LinkType', function($stateParams, LinkType) {
+                    return LinkType.get({id : $stateParams.id}).$promise;
                 }],
                 previousState: ["$state", function ($state) {
                     var currentStateData = {
-                        name: $state.current.name || 'address',
+                        name: $state.current.name || 'link-type',
                         params: $state.params,
                         url: $state.href($state.current.name, $state.params)
                     };
@@ -83,22 +83,22 @@
                 }]
             }
         })
-        .state('address-detail.edit', {
-            parent: 'address-detail',
+        .state('link-type-detail.edit', {
+            parent: 'link-type-detail',
             url: '/detail/edit',
             data: {
                 authorities: ['ROLE_USER']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
-                    templateUrl: 'app/entities/address/address-dialog.html',
-                    controller: 'AddressDialogController',
+                    templateUrl: 'app/entities/link-type/link-type-dialog.html',
+                    controller: 'LinkTypeDialogController',
                     controllerAs: 'vm',
                     backdrop: 'static',
                     size: 'lg',
                     resolve: {
-                        entity: ['Address', function(Address) {
-                            return Address.get({id : $stateParams.id}).$promise;
+                        entity: ['LinkType', function(LinkType) {
+                            return LinkType.get({id : $stateParams.id}).$promise;
                         }]
                     }
                 }).result.then(function() {
@@ -108,82 +108,79 @@
                 });
             }]
         })
-        .state('address.new', {
-            parent: 'address',
+        .state('link-type.new', {
+            parent: 'link-type',
             url: '/new',
             data: {
                 authorities: ['ROLE_USER']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
-                    templateUrl: 'app/entities/address/address-dialog.html',
-                    controller: 'AddressDialogController',
+                    templateUrl: 'app/entities/link-type/link-type-dialog.html',
+                    controller: 'LinkTypeDialogController',
                     controllerAs: 'vm',
                     backdrop: 'static',
                     size: 'lg',
                     resolve: {
                         entity: function () {
                             return {
-                                email: null,
-                                street: null,
-                                city: null,
-                                postalCode: null,
-                                country: null,
+                                name: null,
+                                logoFilepath: null,
                                 id: null
                             };
                         }
                     }
                 }).result.then(function() {
-                    $state.go('address', null, { reload: 'address' });
+                    $state.go('link-type', null, { reload: 'link-type' });
                 }, function() {
-                    $state.go('address');
+                    $state.go('link-type');
                 });
             }]
         })
-        .state('address.edit', {
-            parent: 'address',
+        .state('link-type.edit', {
+            parent: 'link-type',
             url: '/{id}/edit',
             data: {
                 authorities: ['ROLE_USER']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
-                    templateUrl: 'app/entities/address/address-dialog.html',
-                    controller: 'AddressDialogController',
+                    templateUrl: 'app/entities/link-type/link-type-dialog.html',
+                    controller: 'LinkTypeDialogController',
                     controllerAs: 'vm',
                     backdrop: 'static',
                     size: 'lg',
                     resolve: {
-                        entity: ['Address', function(Address) {
-                            return Address.get({id : $stateParams.id}).$promise;
+                        entity: ['LinkType', function(LinkType) {
+                            return LinkType.get({id : $stateParams.id}).$promise;
                         }]
                     }
                 }).result.then(function() {
-                    $state.go('address', null, { reload: 'address' });
+                    $state.go('link-type', null, { reload: 'link-type' });
                 }, function() {
                     $state.go('^');
                 });
             }]
         })
-        .state('address.delete', {
-            parent: 'address',
+        .state('link-type.delete', {
+            parent: 'link-type',
             url: '/{id}/delete',
             data: {
                 authorities: ['ROLE_USER']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
-                    templateUrl: 'app/entities/address/address-delete-dialog.html',
-                    controller: 'AddressDeleteController',
+                    templateUrl: 'app/entities/link-type/link-type-delete-dialog.html',
+                    controller: 'LinkTypeDeleteController',
                     controllerAs: 'vm',
                     size: 'md',
                     resolve: {
-                        entity: ['Address', function(Address) {
-                            return Address.get({id : $stateParams.id}).$promise;
+                        entity: ['LinkType', function(LinkType) {
+                            return LinkType.get({id : $stateParams.id}).$promise;
                         }]
                     }
                 }).result.then(function() {
-                    $state.go('address', null, { reload: 'address' });
+                    $state.go('link-type', null, { reload: 'link-type' });
                 }, function() {
                     $state.go('^');
                 });
