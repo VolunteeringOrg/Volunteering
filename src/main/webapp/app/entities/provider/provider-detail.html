@@ -1,0 +1,31 @@
+
+<div>
+    <h2><span data-translate="myappApp.provider.detail.title">Provider</span> {{vm.provider.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="myappApp.provider.name">Name</span></dt>
+        <dd>
+            <span>{{vm.provider.name}}</span>
+        </dd>
+        <dt><span data-translate="myappApp.provider.logoFilepath">Logo Filepath</span></dt>
+        <dd>
+            <span>{{vm.provider.logoFilepath}}</span>
+        </dd>
+        <dt><span data-translate="myappApp.provider.summary">Summary</span></dt>
+        <dd>
+            <span>{{vm.provider.summary}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="provider-detail.edit({id:vm.provider.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

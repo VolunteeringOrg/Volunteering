@@ -1,0 +1,24 @@
+{
+    "myappApp": {
+        "provider" : {
+            "home": {
+                "title": "Providers",
+                "createLabel": "Dodaj Provider",
+                "createOrEditLabel": "Dodaj lub edytuj: Provider",
+                "search": "Szukaj Provider"
+            },
+            "created": "Utworzono nowy Provider z identyfikatorem {{ param }}",
+            "updated": "Uaktualniono Provider z identyfikatorem {{ param }}",
+            "deleted": "Usunięto Provider z identyfikatorem {{ param }}",
+            "delete": {
+                "question": "Czy na pewno chcesz usunąć Provider {{ id }}?"
+            },
+            "detail": {
+                "title": "Provider"
+            },
+            "name": "Name",
+            "logoFilepath": "Logo Filepath",
+            "summary": "Summary"
+        }
+    }
+}

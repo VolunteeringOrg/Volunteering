@@ -1,0 +1,24 @@
+{
+    "myappApp": {
+        "provider" : {
+            "home": {
+                "title": "Providers",
+                "createLabel": "Create a new Provider",
+                "createOrEditLabel": "Create or edit a Provider",
+                "search": "Search for Provider"
+            },
+            "created": "A new Provider is created with identifier {{ param }}",
+            "updated": "A Provider is updated with identifier {{ param }}",
+            "deleted": "A Provider is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Provider {{ id }}?"
+            },
+            "detail": {
+                "title": "Provider"
+            },
+            "name": "Name",
+            "logoFilepath": "Logo Filepath",
+            "summary": "Summary"
+        }
+    }
+}

@@ -9,6 +9,7 @@
                 "main": "Entities",
                 "address": "Address",
                 "linkType": "Link Type",
+                "provider": "Provider",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {
