@@ -20,6 +20,12 @@
             "otherEntityField": "login",
             "ownerSide": true,
             "otherEntityRelationshipName": "application"
+        },
+        {
+            "relationshipName": "document",
+            "otherEntityName": "document",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "application"
         }
     ],
     "fields": [

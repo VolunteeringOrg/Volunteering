@@ -24,6 +24,30 @@
             "otherEntityName": "term",
             "relationshipType": "many-to-one",
             "otherEntityField": "value"
+        },
+        {
+            "relationshipName": "application",
+            "otherEntityName": "application",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "offer"
+        },
+        {
+            "relationshipName": "requirement",
+            "otherEntityName": "requirement",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "offer"
+        },
+        {
+            "relationshipName": "offerDetails",
+            "otherEntityName": "offerDetails",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "offer"
+        },
+        {
+            "relationshipName": "document",
+            "otherEntityName": "document",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "offer"
         }
     ],
     "fields": [

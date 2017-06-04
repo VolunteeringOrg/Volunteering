@@ -5,9 +5,9 @@
         .module('myappApp')
         .controller('LinkTypeDetailController', LinkTypeDetailController);
 
-    LinkTypeDetailController.$inject = ['$scope', '$rootScope', '$stateParams', 'previousState', 'entity', 'LinkType'];
+    LinkTypeDetailController.$inject = ['$scope', '$rootScope', '$stateParams', 'previousState', 'entity', 'LinkType', 'Link'];
 
-    function LinkTypeDetailController($scope, $rootScope, $stateParams, previousState, entity, LinkType) {
+    function LinkTypeDetailController($scope, $rootScope, $stateParams, previousState, entity, LinkType, Link) {
         var vm = this;
 
         vm.linkType = entity;

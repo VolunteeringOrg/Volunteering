@@ -5,9 +5,9 @@
         .module('myappApp')
         .controller('ProgramDialogController', ProgramDialogController);
 
-    ProgramDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Program', 'Provider', 'StatusType'];
+    ProgramDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Program', 'Provider', 'StatusType', 'Offer'];
 
-    function ProgramDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Program, Provider, StatusType) {
+    function ProgramDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Program, Provider, StatusType, Offer) {
         var vm = this;
 
         vm.program = entity;
@@ -17,6 +17,7 @@
         vm.save = save;
         vm.providers = Provider.query();
         vm.statustypes = StatusType.query();
+        vm.offers = Offer.query();
 
         $timeout(function (){
             angular.element('.form-group:eq(1)>input').focus();

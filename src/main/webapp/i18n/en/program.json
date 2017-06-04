@@ -22,7 +22,8 @@
             "dateFrom": "Date From",
             "shareProgram": "Share Program",
             "provider": "Provider",
-            "statusType": "Status Type"
+            "statusType": "Status Type",
+            "offer": "Offer"
         }
     }
 }

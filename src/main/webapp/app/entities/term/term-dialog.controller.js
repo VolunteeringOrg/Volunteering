@@ -5,14 +5,15 @@
         .module('myappApp')
         .controller('TermDialogController', TermDialogController);
 
-    TermDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Term'];
+    TermDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Term', 'Offer'];
 
-    function TermDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Term) {
+    function TermDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Term, Offer) {
         var vm = this;
 
         vm.term = entity;
         vm.clear = clear;
         vm.save = save;
+        vm.offers = Offer.query();
 
         $timeout(function (){
             angular.element('.form-group:eq(1)>input').focus();

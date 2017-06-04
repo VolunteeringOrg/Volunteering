@@ -5,9 +5,9 @@
         .module('myappApp')
         .controller('OfferDialogController', OfferDialogController);
 
-    OfferDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Offer', 'StatusType', 'Program', 'Term'];
+    OfferDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Offer', 'StatusType', 'Program', 'Term', 'Application', 'Requirement', 'OfferDetails', 'Document'];
 
-    function OfferDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Offer, StatusType, Program, Term) {
+    function OfferDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Offer, StatusType, Program, Term, Application, Requirement, OfferDetails, Document) {
         var vm = this;
 
         vm.offer = entity;
@@ -18,6 +18,10 @@
         vm.statustypes = StatusType.query();
         vm.programs = Program.query();
         vm.terms = Term.query();
+        vm.applications = Application.query();
+        vm.requirements = Requirement.query();
+        vm.offerdetails = OfferDetails.query();
+        vm.documents = Document.query();
 
         $timeout(function (){
             angular.element('.form-group:eq(1)>input').focus();

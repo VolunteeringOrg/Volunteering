@@ -1,13 +1,15 @@
 package com.mycompany.myapp.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
-import org.springframework.data.elasticsearch.annotations.Document;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.time.ZonedDateTime;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Objects;
 
 /**
@@ -16,7 +18,7 @@ import java.util.Objects;
 @Entity
 @Table(name = "offer")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-@Document(indexName = "offer")
+@org.springframework.data.elasticsearch.annotations.Document(indexName = "offer")
 public class Offer implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -75,6 +77,26 @@ public class Offer implements Serializable {
 
     @ManyToOne
     private Term term;
+
+    @OneToMany(mappedBy = "offer")
+    @JsonIgnore
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<Application> applications = new HashSet<>();
+
+    @OneToMany(mappedBy = "offer")
+    @JsonIgnore
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<Requirement> requirements = new HashSet<>();
+
+    @OneToMany(mappedBy = "offer")
+    @JsonIgnore
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<OfferDetails> offerDetails = new HashSet<>();
+
+    @OneToMany(mappedBy = "offer")
+    @JsonIgnore
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<Document> documents = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -251,6 +273,106 @@ public class Offer implements Serializable {
 
     public void setTerm(Term term) {
         this.term = term;
+    }
+
+    public Set<Application> getApplications() {
+        return applications;
+    }
+
+    public Offer applications(Set<Application> applications) {
+        this.applications = applications;
+        return this;
+    }
+
+    public Offer addApplication(Application application) {
+        this.applications.add(application);
+        application.setOffer(this);
+        return this;
+    }
+
+    public Offer removeApplication(Application application) {
+        this.applications.remove(application);
+        application.setOffer(null);
+        return this;
+    }
+
+    public void setApplications(Set<Application> applications) {
+        this.applications = applications;
+    }
+
+    public Set<Requirement> getRequirements() {
+        return requirements;
+    }
+
+    public Offer requirements(Set<Requirement> requirements) {
+        this.requirements = requirements;
+        return this;
+    }
+
+    public Offer addRequirement(Requirement requirement) {
+        this.requirements.add(requirement);
+        requirement.setOffer(this);
+        return this;
+    }
+
+    public Offer removeRequirement(Requirement requirement) {
+        this.requirements.remove(requirement);
+        requirement.setOffer(null);
+        return this;
+    }
+
+    public void setRequirements(Set<Requirement> requirements) {
+        this.requirements = requirements;
+    }
+
+    public Set<OfferDetails> getOfferDetails() {
+        return offerDetails;
+    }
+
+    public Offer offerDetails(Set<OfferDetails> offerDetails) {
+        this.offerDetails = offerDetails;
+        return this;
+    }
+
+    public Offer addOfferDetails(OfferDetails offerDetails) {
+        this.offerDetails.add(offerDetails);
+        offerDetails.setOffer(this);
+        return this;
+    }
+
+    public Offer removeOfferDetails(OfferDetails offerDetails) {
+        this.offerDetails.remove(offerDetails);
+        offerDetails.setOffer(null);
+        return this;
+    }
+
+    public void setOfferDetails(Set<OfferDetails> offerDetails) {
+        this.offerDetails = offerDetails;
+    }
+
+    public Set<Document> getDocuments() {
+        return documents;
+    }
+
+    public Offer documents(Set<Document> documents) {
+        this.documents = documents;
+        return this;
+    }
+
+    public Offer addDocument(Document document) {
+        this.documents.add(document);
+        document.setOffer(this);
+        return this;
+    }
+
+    public Offer removeDocument(Document document) {
+        this.documents.remove(document);
+        document.setOffer(null);
+        return this;
+    }
+
+    public void setDocuments(Set<Document> documents) {
+        this.documents = documents;
     }
 
     @Override

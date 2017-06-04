@@ -5,14 +5,16 @@
         .module('myappApp')
         .controller('ProviderDialogController', ProviderDialogController);
 
-    ProviderDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Provider'];
+    ProviderDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Provider', 'Program', 'Link'];
 
-    function ProviderDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Provider) {
+    function ProviderDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Provider, Program, Link) {
         var vm = this;
 
         vm.provider = entity;
         vm.clear = clear;
         vm.save = save;
+        vm.programs = Program.query();
+        vm.links = Link.query();
 
         $timeout(function (){
             angular.element('.form-group:eq(1)>input').focus();

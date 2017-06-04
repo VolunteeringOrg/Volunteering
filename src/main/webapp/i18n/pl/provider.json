@@ -18,7 +18,9 @@
             },
             "name": "Name",
             "logoFilepath": "Logo Filepath",
-            "summary": "Summary"
+            "summary": "Summary",
+            "program": "Program",
+            "link": "Link"
         }
     }
 }

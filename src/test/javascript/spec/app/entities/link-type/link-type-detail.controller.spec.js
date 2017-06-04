@@ -4,7 +4,7 @@ describe('Controller Tests', function() {
 
     describe('LinkType Management Detail Controller', function() {
         var $scope, $rootScope;
-        var MockEntity, MockPreviousState, MockLinkType;
+        var MockEntity, MockPreviousState, MockLinkType, MockLink;
         var createController;
 
         beforeEach(inject(function($injector) {
@@ -13,6 +13,7 @@ describe('Controller Tests', function() {
             MockEntity = jasmine.createSpy('MockEntity');
             MockPreviousState = jasmine.createSpy('MockPreviousState');
             MockLinkType = jasmine.createSpy('MockLinkType');
+            MockLink = jasmine.createSpy('MockLink');
             
 
             var locals = {
@@ -20,7 +21,8 @@ describe('Controller Tests', function() {
                 '$rootScope': $rootScope,
                 'entity': MockEntity,
                 'previousState': MockPreviousState,
-                'LinkType': MockLinkType
+                'LinkType': MockLinkType,
+                'Link': MockLink
             };
             createController = function() {
                 $injector.get('$controller')("LinkTypeDetailController", locals);

@@ -5,9 +5,9 @@
         .module('myappApp')
         .controller('StatusTypeDetailController', StatusTypeDetailController);
 
-    StatusTypeDetailController.$inject = ['$scope', '$rootScope', '$stateParams', 'previousState', 'entity', 'StatusType'];
+    StatusTypeDetailController.$inject = ['$scope', '$rootScope', '$stateParams', 'previousState', 'entity', 'StatusType', 'Program', 'Offer'];
 
-    function StatusTypeDetailController($scope, $rootScope, $stateParams, previousState, entity, StatusType) {
+    function StatusTypeDetailController($scope, $rootScope, $stateParams, previousState, entity, StatusType, Program, Offer) {
         var vm = this;
 
         vm.statusType = entity;

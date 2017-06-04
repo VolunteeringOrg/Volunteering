@@ -5,9 +5,9 @@
         .module('myappApp')
         .controller('ProgramDetailController', ProgramDetailController);
 
-    ProgramDetailController.$inject = ['$scope', '$rootScope', '$stateParams', 'previousState', 'entity', 'Program', 'Provider', 'StatusType'];
+    ProgramDetailController.$inject = ['$scope', '$rootScope', '$stateParams', 'previousState', 'entity', 'Program', 'Provider', 'StatusType', 'Offer'];
 
-    function ProgramDetailController($scope, $rootScope, $stateParams, previousState, entity, Program, Provider, StatusType) {
+    function ProgramDetailController($scope, $rootScope, $stateParams, previousState, entity, Program, Provider, StatusType, Offer) {
         var vm = this;
 
         vm.program = entity;

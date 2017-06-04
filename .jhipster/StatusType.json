@@ -1,6 +1,19 @@
 {
     "fluentMethods": true,
-    "relationships": [],
+    "relationships": [
+        {
+            "relationshipName": "program",
+            "otherEntityName": "program",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "statusType"
+        },
+        {
+            "relationshipName": "offer",
+            "otherEntityName": "offer",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "statusType"
+        }
+    ],
     "fields": [
         {
             "fieldName": "value",

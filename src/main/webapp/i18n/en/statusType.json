@@ -16,7 +16,9 @@
             "detail": {
                 "title": "Status Type"
             },
-            "value": "Value"
+            "value": "Value",
+            "program": "Program",
+            "offer": "Offer"
         }
     }
 }

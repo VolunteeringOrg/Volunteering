@@ -1,5 +1,6 @@
 package com.mycompany.myapp.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.springframework.data.elasticsearch.annotations.Document;
@@ -7,6 +8,8 @@ import org.springframework.data.elasticsearch.annotations.Document;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Objects;
 
 /**
@@ -34,6 +37,11 @@ public class LinkType implements Serializable {
     @Size(max = 255)
     @Column(name = "logo_path", length = 255, nullable = false)
     private String logoPath;
+
+    @OneToMany(mappedBy = "linkType")
+    @JsonIgnore
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<Link> links = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -67,6 +75,31 @@ public class LinkType implements Serializable {
 
     public void setLogoPath(String logoPath) {
         this.logoPath = logoPath;
+    }
+
+    public Set<Link> getLinks() {
+        return links;
+    }
+
+    public LinkType links(Set<Link> links) {
+        this.links = links;
+        return this;
+    }
+
+    public LinkType addLink(Link link) {
+        this.links.add(link);
+        link.setLinkType(this);
+        return this;
+    }
+
+    public LinkType removeLink(Link link) {
+        this.links.remove(link);
+        link.setLinkType(null);
+        return this;
+    }
+
+    public void setLinks(Set<Link> links) {
+        this.links = links;
     }
 
     @Override

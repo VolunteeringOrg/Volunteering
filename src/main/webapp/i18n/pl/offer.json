@@ -28,7 +28,11 @@
             "workhours": "Workhours",
             "statusType": "Status Type",
             "program": "Program",
-            "term": "Term"
+            "term": "Term",
+            "application": "Application",
+            "requirement": "Requirement",
+            "offerDetails": "Offer Details",
+            "document": "Document"
         }
     }
 }

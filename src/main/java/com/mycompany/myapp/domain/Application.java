@@ -1,12 +1,14 @@
 package com.mycompany.myapp.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
-import org.springframework.data.elasticsearch.annotations.Document;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Objects;
 
 /**
@@ -15,7 +17,7 @@ import java.util.Objects;
 @Entity
 @Table(name = "application")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-@Document(indexName = "application")
+@org.springframework.data.elasticsearch.annotations.Document(indexName = "application")
 public class Application implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -41,6 +43,11 @@ public class Application implements Serializable {
     @ManyToOne(optional = false)
     @NotNull
     private User user;
+
+    @OneToMany(mappedBy = "application")
+    @JsonIgnore
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<Document> documents = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -100,6 +107,31 @@ public class Application implements Serializable {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public Set<Document> getDocuments() {
+        return documents;
+    }
+
+    public Application documents(Set<Document> documents) {
+        this.documents = documents;
+        return this;
+    }
+
+    public Application addDocument(Document document) {
+        this.documents.add(document);
+        document.setApplication(this);
+        return this;
+    }
+
+    public Application removeDocument(Document document) {
+        this.documents.remove(document);
+        document.setApplication(null);
+        return this;
+    }
+
+    public void setDocuments(Set<Document> documents) {
+        this.documents = documents;
     }
 
     @Override

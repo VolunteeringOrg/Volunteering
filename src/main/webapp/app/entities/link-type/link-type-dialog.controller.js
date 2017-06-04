@@ -5,14 +5,15 @@
         .module('myappApp')
         .controller('LinkTypeDialogController', LinkTypeDialogController);
 
-    LinkTypeDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'LinkType'];
+    LinkTypeDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'LinkType', 'Link'];
 
-    function LinkTypeDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, LinkType) {
+    function LinkTypeDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, LinkType, Link) {
         var vm = this;
 
         vm.linkType = entity;
         vm.clear = clear;
         vm.save = save;
+        vm.links = Link.query();
 
         $timeout(function (){
             angular.element('.form-group:eq(1)>input').focus();

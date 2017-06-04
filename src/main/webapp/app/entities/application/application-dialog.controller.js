@@ -5,9 +5,9 @@
         .module('myappApp')
         .controller('ApplicationDialogController', ApplicationDialogController);
 
-    ApplicationDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Application', 'Offer', 'User'];
+    ApplicationDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Application', 'Offer', 'User', 'Document'];
 
-    function ApplicationDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Application, Offer, User) {
+    function ApplicationDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Application, Offer, User, Document) {
         var vm = this;
 
         vm.application = entity;
@@ -15,6 +15,7 @@
         vm.save = save;
         vm.offers = Offer.query();
         vm.users = User.query();
+        vm.documents = Document.query();
 
         $timeout(function (){
             angular.element('.form-group:eq(1)>input').focus();

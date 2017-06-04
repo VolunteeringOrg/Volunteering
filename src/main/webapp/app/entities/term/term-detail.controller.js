@@ -5,9 +5,9 @@
         .module('myappApp')
         .controller('TermDetailController', TermDetailController);
 
-    TermDetailController.$inject = ['$scope', '$rootScope', '$stateParams', 'previousState', 'entity', 'Term'];
+    TermDetailController.$inject = ['$scope', '$rootScope', '$stateParams', 'previousState', 'entity', 'Term', 'Offer'];
 
-    function TermDetailController($scope, $rootScope, $stateParams, previousState, entity, Term) {
+    function TermDetailController($scope, $rootScope, $stateParams, previousState, entity, Term, Offer) {
         var vm = this;
 
         vm.term = entity;

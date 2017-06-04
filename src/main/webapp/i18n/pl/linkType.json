@@ -17,7 +17,8 @@
                 "title": "Link Type"
             },
             "name": "Name",
-            "logoPath": "Logo Path"
+            "logoPath": "Logo Path",
+            "link": "Link"
         }
     }
 }

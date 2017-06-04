@@ -1,5 +1,6 @@
 package com.mycompany.myapp.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.springframework.data.elasticsearch.annotations.Document;
@@ -7,7 +8,9 @@ import org.springframework.data.elasticsearch.annotations.Document;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 /**
  * A Address.
@@ -45,6 +48,32 @@ public class Address implements Serializable {
     @Size(max = 255)
     @Column(name = "country", length = 255)
     private String country;
+
+    @OneToMany(mappedBy = "address")
+    @JsonIgnore
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<User> users = new HashSet<>();
+
+    public Set<com.mycompany.myapp.domain.User> getUser() {
+        return users;
+    }
+
+    public Address users(Set<com.mycompany.myapp.domain.User> users) {
+        this.users = users;
+        return this;
+    }
+
+    public Address addUser(com.mycompany.myapp.domain.User user) {
+        this.users.add(user);
+        user.setAddress(this);
+        return this;
+    }
+
+    public Address removeUser(com.mycompany.myapp.domain.User user) {
+        this.users.remove(user);
+        user.setAddress(null);
+        return this;
+    }
 
     public Long getId() {
         return id;

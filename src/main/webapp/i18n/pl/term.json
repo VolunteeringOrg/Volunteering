@@ -16,7 +16,8 @@
             "detail": {
                 "title": "Term"
             },
-            "value": "Value"
+            "value": "Value",
+            "offer": "Offer"
         }
     }
 }

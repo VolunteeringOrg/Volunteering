@@ -5,9 +5,9 @@
         .module('myappApp')
         .controller('ProviderDetailController', ProviderDetailController);
 
-    ProviderDetailController.$inject = ['$scope', '$rootScope', '$stateParams', 'previousState', 'entity', 'Provider'];
+    ProviderDetailController.$inject = ['$scope', '$rootScope', '$stateParams', 'previousState', 'entity', 'Provider', 'Program', 'Link'];
 
-    function ProviderDetailController($scope, $rootScope, $stateParams, previousState, entity, Provider) {
+    function ProviderDetailController($scope, $rootScope, $stateParams, previousState, entity, Provider, Program, Link) {
         var vm = this;
 
         vm.provider = entity;

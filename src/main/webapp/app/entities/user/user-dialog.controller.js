@@ -5,9 +5,9 @@
         .module('myappApp')
         .controller('UserDialogController', UserDialogController);
 
-    UserDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'User', 'Address', 'UserType'];
+    UserDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'User', 'Address', 'UserType', 'Application'];
 
-    function UserDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, User, Address, UserType) {
+    function UserDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, User, Address, UserType, Application) {
         var vm = this;
 
         vm.user = entity;
@@ -15,6 +15,7 @@
         vm.save = save;
         vm.addresses = Address.query();
         vm.usertypes = UserType.query();
+        vm.applications = Application.query();
 
         $timeout(function (){
             angular.element('.form-group:eq(1)>input').focus();

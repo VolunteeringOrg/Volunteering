@@ -15,6 +15,12 @@
             "otherEntityName": "userType",
             "relationshipType": "many-to-one",
             "otherEntityField": "value"
+        },
+        {
+            "relationshipName": "application",
+            "otherEntityName": "application",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "user"
         }
     ],
     "fields": [

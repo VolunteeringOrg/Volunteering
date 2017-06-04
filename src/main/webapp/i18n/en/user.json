@@ -21,7 +21,8 @@
             "login": "Login",
             "password": "Password",
             "address": "Address",
-            "userType": "User Type"
+            "userType": "User Type",
+            "application": "Application"
         }
     }
 }

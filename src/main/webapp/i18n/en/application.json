@@ -19,7 +19,8 @@
             "decision": "Decision",
             "feedback": "Feedback",
             "offer": "Offer",
-            "user": "User"
+            "user": "User",
+            "document": "Document"
         }
     }
 }

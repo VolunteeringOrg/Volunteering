@@ -1,5 +1,6 @@
 package com.mycompany.myapp.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.springframework.data.elasticsearch.annotations.Document;
@@ -8,6 +9,8 @@ import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.time.ZonedDateTime;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Objects;
 
 /**
@@ -53,6 +56,11 @@ public class Program implements Serializable {
     @ManyToOne(optional = false)
     @NotNull
     private StatusType statusType;
+
+    @OneToMany(mappedBy = "program")
+    @JsonIgnore
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<Offer> offers = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -151,6 +159,31 @@ public class Program implements Serializable {
 
     public void setStatusType(StatusType statusType) {
         this.statusType = statusType;
+    }
+
+    public Set<Offer> getOffers() {
+        return offers;
+    }
+
+    public Program offers(Set<Offer> offers) {
+        this.offers = offers;
+        return this;
+    }
+
+    public Program addOffer(Offer offer) {
+        this.offers.add(offer);
+        offer.setProgram(this);
+        return this;
+    }
+
+    public Program removeOffer(Offer offer) {
+        this.offers.remove(offer);
+        offer.setProgram(null);
+        return this;
+    }
+
+    public void setOffers(Set<Offer> offers) {
+        this.offers = offers;
     }
 
     @Override

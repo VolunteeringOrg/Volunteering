@@ -18,6 +18,12 @@
                 "required"
             ],
             "otherEntityField": "value"
+        },
+        {
+            "relationshipName": "offer",
+            "otherEntityName": "offer",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "program"
         }
     ],
     "fields": [

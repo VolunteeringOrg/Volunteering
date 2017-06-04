@@ -5,9 +5,9 @@
         .module('myappApp')
         .controller('UserDetailController', UserDetailController);
 
-    UserDetailController.$inject = ['$scope', '$rootScope', '$stateParams', 'previousState', 'entity', 'User', 'Address', 'UserType'];
+    UserDetailController.$inject = ['$scope', '$rootScope', '$stateParams', 'previousState', 'entity', 'User', 'Address', 'UserType', 'Application'];
 
-    function UserDetailController($scope, $rootScope, $stateParams, previousState, entity, User, Address, UserType) {
+    function UserDetailController($scope, $rootScope, $stateParams, previousState, entity, User, Address, UserType, Application) {
         var vm = this;
 
         vm.user = entity;

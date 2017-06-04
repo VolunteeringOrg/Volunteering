@@ -5,14 +5,16 @@
         .module('myappApp')
         .controller('StatusTypeDialogController', StatusTypeDialogController);
 
-    StatusTypeDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'StatusType'];
+    StatusTypeDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'StatusType', 'Program', 'Offer'];
 
-    function StatusTypeDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, StatusType) {
+    function StatusTypeDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, StatusType, Program, Offer) {
         var vm = this;
 
         vm.statusType = entity;
         vm.clear = clear;
         vm.save = save;
+        vm.programs = Program.query();
+        vm.offers = Offer.query();
 
         $timeout(function (){
             angular.element('.form-group:eq(1)>input').focus();

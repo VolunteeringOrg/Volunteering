@@ -1,5 +1,6 @@
 package com.mycompany.myapp.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.springframework.data.elasticsearch.annotations.Document;
@@ -7,6 +8,8 @@ import org.springframework.data.elasticsearch.annotations.Document;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Objects;
 
 /**
@@ -37,6 +40,16 @@ public class Provider implements Serializable {
     @Size(max = 1000)
     @Column(name = "summary", length = 1000)
     private String summary;
+
+    @OneToMany(mappedBy = "provider")
+    @JsonIgnore
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<Program> programs = new HashSet<>();
+
+    @OneToMany(mappedBy = "provider")
+    @JsonIgnore
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<Link> links = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -83,6 +96,56 @@ public class Provider implements Serializable {
 
     public void setSummary(String summary) {
         this.summary = summary;
+    }
+
+    public Set<Program> getPrograms() {
+        return programs;
+    }
+
+    public Provider programs(Set<Program> programs) {
+        this.programs = programs;
+        return this;
+    }
+
+    public Provider addProgram(Program program) {
+        this.programs.add(program);
+        program.setProvider(this);
+        return this;
+    }
+
+    public Provider removeProgram(Program program) {
+        this.programs.remove(program);
+        program.setProvider(null);
+        return this;
+    }
+
+    public void setPrograms(Set<Program> programs) {
+        this.programs = programs;
+    }
+
+    public Set<Link> getLinks() {
+        return links;
+    }
+
+    public Provider links(Set<Link> links) {
+        this.links = links;
+        return this;
+    }
+
+    public Provider addLink(Link link) {
+        this.links.add(link);
+        link.setProvider(this);
+        return this;
+    }
+
+    public Provider removeLink(Link link) {
+        this.links.remove(link);
+        link.setProvider(null);
+        return this;
+    }
+
+    public void setLinks(Set<Link> links) {
+        this.links = links;
     }
 
     @Override
