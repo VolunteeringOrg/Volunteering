@@ -94,7 +94,7 @@ public class LinkType implements Serializable {
 
     public LinkType removeLink(Link link) {
         this.links.remove(link);
-        link.setLinkType(null);
+//        link.setLinkType(null);   //LinkType is a Dictionary
         return this;
     }
 

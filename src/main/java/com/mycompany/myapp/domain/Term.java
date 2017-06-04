@@ -76,7 +76,7 @@ public class Term implements Serializable {
 
     public Term removeOffer(Offer offer) {
         this.offers.remove(offer);
-        offer.setTerm(null);
+//        offer.setTerm(null);  //Term is a Dictionary
         return this;
     }
 

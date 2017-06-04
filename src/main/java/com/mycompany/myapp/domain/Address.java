@@ -71,7 +71,7 @@ public class Address implements Serializable {
 
     public Address removeUser(com.mycompany.myapp.domain.User user) {
         this.users.remove(user);
-        user.setAddress(null);
+//        user.setAddress(null);    //Address is a Dictionary
         return this;
     }
 
