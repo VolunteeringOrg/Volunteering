@@ -30,8 +30,10 @@ public class LinkType implements Serializable {
     @Column(name = "name", length = 255, nullable = false)
     private String name;
 
-    @Column(name = "logo_filepath")
-    private String logoFilepath;
+    @NotNull
+    @Size(max = 255)
+    @Column(name = "logo_path", length = 255, nullable = false)
+    private String logoPath;
 
     public Long getId() {
         return id;
@@ -54,17 +56,17 @@ public class LinkType implements Serializable {
         this.name = name;
     }
 
-    public String getLogoFilepath() {
-        return logoFilepath;
+    public String getLogoPath() {
+        return logoPath;
     }
 
-    public LinkType logoFilepath(String logoFilepath) {
-        this.logoFilepath = logoFilepath;
+    public LinkType logoPath(String logoPath) {
+        this.logoPath = logoPath;
         return this;
     }
 
-    public void setLogoFilepath(String logoFilepath) {
-        this.logoFilepath = logoFilepath;
+    public void setLogoPath(String logoPath) {
+        this.logoPath = logoPath;
     }
 
     @Override
@@ -92,7 +94,7 @@ public class LinkType implements Serializable {
         return "LinkType{" +
             "id=" + getId() +
             ", name='" + getName() + "'" +
-            ", logoFilepath='" + getLogoFilepath() + "'" +
+            ", logoPath='" + getLogoPath() + "'" +
             "}";
     }
 }

@@ -1,6 +1,5 @@
 package com.mycompany.myapp.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.springframework.data.elasticsearch.annotations.Document;
@@ -9,8 +8,6 @@ import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.time.ZonedDateTime;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.Objects;
 
 /**
@@ -29,9 +26,6 @@ public class Program implements Serializable {
     @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
 
-    @Column(name = "provider_id")
-    private Integer providerId;
-
     @Size(max = 255)
     @Column(name = "name", length = 255)
     private String name;
@@ -48,24 +42,17 @@ public class Program implements Serializable {
     @Column(name = "date_from", nullable = false)
     private ZonedDateTime dateFrom;
 
-    @NotNull
-    @Column(name = "status_type_id", nullable = false)
-    private Integer statusTypeId;
-
     @Size(max = 255)
     @Column(name = "share_program", length = 255)
     private String shareProgram;
 
-    @OneToMany(mappedBy = "v")
-    @JsonIgnore
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    private Set<Fk_provider_program> vs = new HashSet<>();
+    @ManyToOne(optional = false)
+    @NotNull
+    private Provider provider;
 
-    @ManyToOne
-    private Provider fk_provider_program;
-
-    @ManyToOne
-    private StatusType fk_statustype_program;
+    @ManyToOne(optional = false)
+    @NotNull
+    private StatusType statusType;
 
     public Long getId() {
         return id;
@@ -73,19 +60,6 @@ public class Program implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Integer getProviderId() {
-        return providerId;
-    }
-
-    public Program providerId(Integer providerId) {
-        this.providerId = providerId;
-        return this;
-    }
-
-    public void setProviderId(Integer providerId) {
-        this.providerId = providerId;
     }
 
     public String getName() {
@@ -140,19 +114,6 @@ public class Program implements Serializable {
         this.dateFrom = dateFrom;
     }
 
-    public Integer getStatusTypeId() {
-        return statusTypeId;
-    }
-
-    public Program statusTypeId(Integer statusTypeId) {
-        this.statusTypeId = statusTypeId;
-        return this;
-    }
-
-    public void setStatusTypeId(Integer statusTypeId) {
-        this.statusTypeId = statusTypeId;
-    }
-
     public String getShareProgram() {
         return shareProgram;
     }
@@ -166,55 +127,30 @@ public class Program implements Serializable {
         this.shareProgram = shareProgram;
     }
 
-    public Set<Fk_provider_program> getVs() {
-        return vs;
+    public Provider getProvider() {
+        return provider;
     }
 
-    public Program vs(Set<Fk_provider_program> fk_provider_programs) {
-        this.vs = fk_provider_programs;
+    public Program provider(Provider provider) {
+        this.provider = provider;
         return this;
     }
 
-    public Program addV(Fk_provider_program fk_provider_program) {
-        this.vs.add(fk_provider_program);
-        fk_provider_program.setV(this);
+    public void setProvider(Provider provider) {
+        this.provider = provider;
+    }
+
+    public StatusType getStatusType() {
+        return statusType;
+    }
+
+    public Program statusType(StatusType statusType) {
+        this.statusType = statusType;
         return this;
     }
 
-    public Program removeV(Fk_provider_program fk_provider_program) {
-        this.vs.remove(fk_provider_program);
-        fk_provider_program.setV(null);
-        return this;
-    }
-
-    public void setVs(Set<Fk_provider_program> fk_provider_programs) {
-        this.vs = fk_provider_programs;
-    }
-
-    public Provider getFk_provider_program() {
-        return fk_provider_program;
-    }
-
-    public Program fk_provider_program(Provider provider) {
-        this.fk_provider_program = provider;
-        return this;
-    }
-
-    public void setFk_provider_program(Provider provider) {
-        this.fk_provider_program = provider;
-    }
-
-    public StatusType getFk_statustype_program() {
-        return fk_statustype_program;
-    }
-
-    public Program fk_statustype_program(StatusType statusType) {
-        this.fk_statustype_program = statusType;
-        return this;
-    }
-
-    public void setFk_statustype_program(StatusType statusType) {
-        this.fk_statustype_program = statusType;
+    public void setStatusType(StatusType statusType) {
+        this.statusType = statusType;
     }
 
     @Override
@@ -241,12 +177,10 @@ public class Program implements Serializable {
     public String toString() {
         return "Program{" +
             "id=" + getId() +
-            ", providerId='" + getProviderId() + "'" +
             ", name='" + getName() + "'" +
             ", highlight='" + getHighlight() + "'" +
             ", dateTo='" + getDateTo() + "'" +
             ", dateFrom='" + getDateFrom() + "'" +
-            ", statusTypeId='" + getStatusTypeId() + "'" +
             ", shareProgram='" + getShareProgram() + "'" +
             "}";
     }

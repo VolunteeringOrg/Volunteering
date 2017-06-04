@@ -8,15 +8,15 @@
     -->
     <changeSet id="20170530185509-2" author="jhipster">
         
-        <addForeignKeyConstraint baseColumnNames="fk_provider_link_id"
+        <addForeignKeyConstraint baseColumnNames="provider_id"
                                  baseTableName="jhi_link"
-                                 constraintName="fk_link_fk_provider_link_id"
+                                 constraintName="fk_link_provider_id"
                                  referencedColumnNames="id"
                                  referencedTableName="provider"/>
 
-        <addForeignKeyConstraint baseColumnNames="fk_linktype_link_id"
+        <addForeignKeyConstraint baseColumnNames="link_type_id"
                                  baseTableName="jhi_link"
-                                 constraintName="fk_link_fk_linktype_link_id"
+                                 constraintName="fk_link_link_type_id"
                                  referencedColumnNames="id"
                                  referencedTableName="link_type"/>
 

@@ -54,6 +54,13 @@ public class CacheConfiguration {
             cm.createCache(com.mycompany.myapp.domain.Program.class.getName() + ".vs", jcacheConfiguration);
             cm.createCache(com.mycompany.myapp.domain.Term.class.getName(), jcacheConfiguration);
             cm.createCache(com.mycompany.myapp.domain.Offer.class.getName(), jcacheConfiguration);
+            cm.createCache(com.mycompany.myapp.domain.Requirement.class.getName(), jcacheConfiguration);
+            cm.createCache(com.mycompany.myapp.domain.Requirement.class.getName() + ".fk_offer_requirements", jcacheConfiguration);
+            cm.createCache(com.mycompany.myapp.domain.Requirement.class.getName() + ".bbbs", jcacheConfiguration);
+            cm.createCache(com.mycompany.myapp.domain.OfferDetails.class.getName(), jcacheConfiguration);
+            cm.createCache(com.mycompany.myapp.domain.UserType.class.getName(), jcacheConfiguration);
+            cm.createCache(com.mycompany.myapp.domain.Application.class.getName(), jcacheConfiguration);
+            cm.createCache(com.mycompany.myapp.domain.Document.class.getName(), jcacheConfiguration);
             // jhipster-needle-ehcache-add-entry
         };
     }

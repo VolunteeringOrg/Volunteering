@@ -5,9 +5,9 @@
         .module('myappApp')
         .controller('OfferDialogController', OfferDialogController);
 
-    OfferDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Offer', 'Program', 'StatusType', 'Term'];
+    OfferDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Offer', 'StatusType', 'Program', 'Term'];
 
-    function OfferDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Offer, Program, StatusType, Term) {
+    function OfferDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Offer, StatusType, Program, Term) {
         var vm = this;
 
         vm.offer = entity;
@@ -15,8 +15,8 @@
         vm.datePickerOpenStatus = {};
         vm.openCalendar = openCalendar;
         vm.save = save;
-        vm.programs = Program.query();
         vm.statustypes = StatusType.query();
+        vm.programs = Program.query();
         vm.terms = Term.query();
 
         $timeout(function (){

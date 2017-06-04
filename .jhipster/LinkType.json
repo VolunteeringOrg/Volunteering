@@ -12,9 +12,13 @@
             "fieldValidateRulesMaxlength": "255"
         },
         {
-            "fieldName": "logoFilepath",
+            "fieldName": "logoPath",
             "fieldType": "String",
-            "fieldValidateRules": []
+            "fieldValidateRules": [
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": "255"
         }
     ],
     "changelogDate": "20170530183942",

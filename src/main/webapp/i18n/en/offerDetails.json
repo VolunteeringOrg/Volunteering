@@ -1,0 +1,24 @@
+{
+    "myappApp": {
+        "offerDetails" : {
+            "home": {
+                "title": "Offer Details",
+                "createLabel": "Create a new Offer Details",
+                "createOrEditLabel": "Create or edit a Offer Details",
+                "search": "Search for Offer Details"
+            },
+            "created": "A new Offer Details is created with identifier {{ param }}",
+            "updated": "A Offer Details is updated with identifier {{ param }}",
+            "deleted": "A Offer Details is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Offer Details {{ id }}?"
+            },
+            "detail": {
+                "title": "Offer Details"
+            },
+            "description": "Description",
+            "isValid": "Is Valid",
+            "offer": "Offer"
+        }
+    }
+}

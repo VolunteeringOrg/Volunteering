@@ -16,22 +16,19 @@
             "detail": {
                 "title": "Offer"
             },
-            "programId": "Program Id",
             "name": "Name",
             "description": "Description",
             "volunteerType": "Volunteer Type",
             "initialNoVacancies": "Initial No Vacancies",
             "actualNoVacancies": "Actual No Vacancies",
-            "statusTypeId": "Status Type Id",
             "dateFrom": "Date From",
             "dateTo": "Date To",
             "workhoursPerMonth": "Workhours Per Month",
-            "termId": "Term Id",
             "daytime": "Daytime",
             "workhours": "Workhours",
-            "fk_program_offer": "Fk Program Offer",
-            "fk_statustype_offer": "Fk Statustype Offer",
-            "fk_term_offer": "Fk Term Offer"
+            "statusType": "Status Type",
+            "program": "Program",
+            "term": "Term"
         }
     }
 }

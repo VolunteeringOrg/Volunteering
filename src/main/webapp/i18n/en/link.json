@@ -16,11 +16,9 @@
             "detail": {
                 "title": "Link"
             },
-            "providerId": "Provider Id",
-            "linkTypeId": "Link Type Id",
             "value": "Value",
-            "fk_provider_link": "Fk Provider Link",
-            "fk_linktype_link": "Fk Linktype Link"
+            "provider": "Provider",
+            "linkType": "Link Type"
         }
     }
 }

@@ -37,7 +37,7 @@
                 <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
                     <th jh-sort-by="id"><span data-translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="name"><span data-translate="myappApp.linkType.name">Name</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="logoFilepath"><span data-translate="myappApp.linkType.logoFilepath">Logo Filepath</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="logoPath"><span data-translate="myappApp.linkType.logoPath">Logo Path</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th></th>
                 </tr>
             </thead>
@@ -45,7 +45,7 @@
                 <tr ng-repeat="linkType in vm.linkTypes track by linkType.id">
                     <td><a ui-sref="link-type-detail({id:linkType.id})">{{linkType.id}}</a></td>
                     <td>{{linkType.name}}</td>
-                    <td>{{linkType.logoFilepath}}</td>
+                    <td>{{linkType.logoPath}}</td>
                     <td class="text-right">
                         <div class="btn-group flex-btn-group-container">
                             <button type="submit"

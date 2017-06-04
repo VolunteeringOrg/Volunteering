@@ -8,21 +8,21 @@
     -->
     <changeSet id="20170530194209-2" author="jhipster">
         
-        <addForeignKeyConstraint baseColumnNames="fk_program_offer_id"
+        <addForeignKeyConstraint baseColumnNames="status_type_id"
                                  baseTableName="offer"
-                                 constraintName="fk_offer_fk_program_offer_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="program"/>
-
-        <addForeignKeyConstraint baseColumnNames="fk_statustype_offer_id"
-                                 baseTableName="offer"
-                                 constraintName="offer_fk_statustype_id"
+                                 constraintName="fk_offer_status_type_id"
                                  referencedColumnNames="id"
                                  referencedTableName="status_type"/>
 
-        <addForeignKeyConstraint baseColumnNames="fk_term_offer_id"
+        <addForeignKeyConstraint baseColumnNames="program_id"
                                  baseTableName="offer"
-                                 constraintName="fk_offer_fk_term_offer_id"
+                                 constraintName="fk_offer_program_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="program"/>
+
+        <addForeignKeyConstraint baseColumnNames="term_id"
+                                 baseTableName="offer"
+                                 constraintName="fk_offer_term_id"
                                  referencedColumnNames="id"
                                  referencedTableName="term"/>
 

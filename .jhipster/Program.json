@@ -2,29 +2,25 @@
     "fluentMethods": true,
     "relationships": [
         {
-            "relationshipName": "v",
-            "otherEntityName": "fk_provider_program",
-            "relationshipType": "one-to-many",
-            "otherEntityRelationshipName": "v"
-        },
-        {
-            "relationshipName": "fk_provider_program",
+            "relationshipName": "provider",
             "otherEntityName": "provider",
             "relationshipType": "many-to-one",
-            "otherEntityField": "id"
+            "relationshipValidateRules": [
+                "required"
+            ],
+            "otherEntityField": "name"
         },
         {
-            "relationshipName": "fk_statustype_program",
+            "relationshipName": "statusType",
             "otherEntityName": "statusType",
             "relationshipType": "many-to-one",
-            "otherEntityField": "id"
+            "relationshipValidateRules": [
+                "required"
+            ],
+            "otherEntityField": "value"
         }
     ],
     "fields": [
-        {
-            "fieldName": "providerId",
-            "fieldType": "Integer"
-        },
         {
             "fieldName": "name",
             "fieldType": "String",
@@ -51,13 +47,6 @@
         {
             "fieldName": "dateFrom",
             "fieldType": "ZonedDateTime",
-            "fieldValidateRules": [
-                "required"
-            ]
-        },
-        {
-            "fieldName": "statusTypeId",
-            "fieldType": "Integer",
             "fieldValidateRules": [
                 "required"
             ]

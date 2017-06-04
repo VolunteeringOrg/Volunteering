@@ -14,38 +14,6 @@
                     ng-model="vm.link.id" readonly />
         </div>
         <div class="form-group">
-            <label class="control-label" data-translate="myappApp.link.providerId" for="field_providerId">Provider Id</label>
-            <input type="number" class="form-control" name="providerId" id="field_providerId"
-                    ng-model="vm.link.providerId"
-                    required/>
-            <div ng-show="editForm.providerId.$invalid">
-                <p class="help-block"
-                    ng-show="editForm.providerId.$error.required" data-translate="entity.validation.required">
-                    This field is required.
-                </p>
-                <p class="help-block"
-                    ng-show="editForm.providerId.$error.number" data-translate="entity.validation.number">
-                    This field should be a number.
-                </p>
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="control-label" data-translate="myappApp.link.linkTypeId" for="field_linkTypeId">Link Type Id</label>
-            <input type="number" class="form-control" name="linkTypeId" id="field_linkTypeId"
-                    ng-model="vm.link.linkTypeId"
-                    required/>
-            <div ng-show="editForm.linkTypeId.$invalid">
-                <p class="help-block"
-                    ng-show="editForm.linkTypeId.$error.required" data-translate="entity.validation.required">
-                    This field is required.
-                </p>
-                <p class="help-block"
-                    ng-show="editForm.linkTypeId.$error.number" data-translate="entity.validation.number">
-                    This field should be a number.
-                </p>
-            </div>
-        </div>
-        <div class="form-group">
             <label class="control-label" data-translate="myappApp.link.value" for="field_value">Value</label>
             <input type="text" class="form-control" name="value" id="field_value"
                     ng-model="vm.link.value"
@@ -63,16 +31,26 @@
         </div>
 
         <div class="form-group">
-            <label data-translate="myappApp.link.fk_provider_link" for="field_fk_provider_link">Fk Provider Link</label>
-            <select class="form-control" id="field_fk_provider_link" name="fk_provider_link" ng-model="vm.link.fk_provider_link" ng-options="provider as provider.id for provider in vm.providers track by provider.id">
-                <option value=""></option>
+            <label data-translate="myappApp.link.provider" for="field_provider">Provider</label>
+            <select class="form-control" id="field_provider" name="provider" ng-model="vm.link.provider" ng-options="provider as provider.name for provider in vm.providers track by provider.id" required>
             </select>
         </div>
+        <div ng-show="editForm.provider.$invalid">
+            <p class="help-block"
+                ng-show="editForm.provider.$error.required" data-translate="entity.validation.required">
+                This field is required.
+            </p>
+        </div>
         <div class="form-group">
-            <label data-translate="myappApp.link.fk_linktype_link" for="field_fk_linktype_link">Fk Linktype Link</label>
-            <select class="form-control" id="field_fk_linktype_link" name="fk_linktype_link" ng-model="vm.link.fk_linktype_link" ng-options="linkType as linkType.id for linkType in vm.linktypes track by linkType.id">
-                <option value=""></option>
+            <label data-translate="myappApp.link.linkType" for="field_linkType">Link Type</label>
+            <select class="form-control" id="field_linkType" name="linkType" ng-model="vm.link.linkType" ng-options="linkType as linkType.name for linkType in vm.linktypes track by linkType.id" required>
             </select>
+        </div>
+        <div ng-show="editForm.linkType.$invalid">
+            <p class="help-block"
+                ng-show="editForm.linkType.$error.required" data-translate="entity.validation.required">
+                This field is required.
+            </p>
         </div>
     </div>
     <div class="modal-footer">

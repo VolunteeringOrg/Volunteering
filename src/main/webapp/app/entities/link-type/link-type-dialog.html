@@ -30,10 +30,20 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="control-label" data-translate="myappApp.linkType.logoFilepath" for="field_logoFilepath">Logo Filepath</label>
-            <input type="text" class="form-control" name="logoFilepath" id="field_logoFilepath"
-                    ng-model="vm.linkType.logoFilepath"
-                    />
+            <label class="control-label" data-translate="myappApp.linkType.logoPath" for="field_logoPath">Logo Path</label>
+            <input type="text" class="form-control" name="logoPath" id="field_logoPath"
+                    ng-model="vm.linkType.logoPath"
+                    required ng-maxlength="255"/>
+            <div ng-show="editForm.logoPath.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.logoPath.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.logoPath.$error.maxlength" data-translate="entity.validation.maxlength" translate-value-max="255">
+                    This field cannot be longer than 255 characters.
+                </p>
+            </div>
         </div>
 
     </div>

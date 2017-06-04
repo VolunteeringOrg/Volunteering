@@ -4,6 +4,7 @@ import com.mycompany.myapp.MyappApp;
 
 import com.mycompany.myapp.domain.Offer;
 import com.mycompany.myapp.domain.StatusType;
+import com.mycompany.myapp.domain.Program;
 import com.mycompany.myapp.repository.OfferRepository;
 import com.mycompany.myapp.repository.search.OfferSearchRepository;
 import com.mycompany.myapp.web.rest.errors.ExceptionTranslator;
@@ -44,9 +45,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(classes = MyappApp.class)
 public class OfferResourceIntTest {
 
-    private static final Integer DEFAULT_PROGRAM_ID = 1;
-    private static final Integer UPDATED_PROGRAM_ID = 2;
-
     private static final String DEFAULT_NAME = "AAAAAAAAAA";
     private static final String UPDATED_NAME = "BBBBBBBBBB";
 
@@ -62,9 +60,6 @@ public class OfferResourceIntTest {
     private static final Integer DEFAULT_ACTUAL_NO_VACANCIES = 1;
     private static final Integer UPDATED_ACTUAL_NO_VACANCIES = 2;
 
-    private static final Integer DEFAULT_STATUS_TYPE_ID = 1;
-    private static final Integer UPDATED_STATUS_TYPE_ID = 2;
-
     private static final ZonedDateTime DEFAULT_DATE_FROM = ZonedDateTime.ofInstant(Instant.ofEpochMilli(0L), ZoneOffset.UTC);
     private static final ZonedDateTime UPDATED_DATE_FROM = ZonedDateTime.now(ZoneId.systemDefault()).withNano(0);
 
@@ -73,9 +68,6 @@ public class OfferResourceIntTest {
 
     private static final Integer DEFAULT_WORKHOURS_PER_MONTH = 1;
     private static final Integer UPDATED_WORKHOURS_PER_MONTH = 2;
-
-    private static final Integer DEFAULT_TERM_ID = 1;
-    private static final Integer UPDATED_TERM_ID = 2;
 
     private static final String DEFAULT_DAYTIME = "AAAAAAAAAA";
     private static final String UPDATED_DAYTIME = "BBBBBBBBBB";
@@ -123,24 +115,26 @@ public class OfferResourceIntTest {
      */
     public static Offer createEntity(EntityManager em) {
         Offer offer = new Offer()
-            .programId(DEFAULT_PROGRAM_ID)
             .name(DEFAULT_NAME)
             .description(DEFAULT_DESCRIPTION)
             .volunteerType(DEFAULT_VOLUNTEER_TYPE)
             .initialNoVacancies(DEFAULT_INITIAL_NO_VACANCIES)
             .actualNoVacancies(DEFAULT_ACTUAL_NO_VACANCIES)
-            .statusTypeId(DEFAULT_STATUS_TYPE_ID)
             .dateFrom(DEFAULT_DATE_FROM)
             .dateTo(DEFAULT_DATE_TO)
             .workhoursPerMonth(DEFAULT_WORKHOURS_PER_MONTH)
-            .termId(DEFAULT_TERM_ID)
             .daytime(DEFAULT_DAYTIME)
             .workhours(DEFAULT_WORKHOURS);
         // Add required entity
-        StatusType fk_statustype_offer = StatusTypeResourceIntTest.createEntity(em);
-        em.persist(fk_statustype_offer);
+        StatusType statusType = StatusTypeResourceIntTest.createEntity(em);
+        em.persist(statusType);
         em.flush();
-        offer.setFk_statustype_offer(fk_statustype_offer);
+        offer.setStatusType(statusType);
+        // Add required entity
+        Program program = ProgramResourceIntTest.createEntity(em);
+        em.persist(program);
+        em.flush();
+        offer.setProgram(program);
         return offer;
     }
 
@@ -165,17 +159,14 @@ public class OfferResourceIntTest {
         List<Offer> offerList = offerRepository.findAll();
         assertThat(offerList).hasSize(databaseSizeBeforeCreate + 1);
         Offer testOffer = offerList.get(offerList.size() - 1);
-        assertThat(testOffer.getProgramId()).isEqualTo(DEFAULT_PROGRAM_ID);
         assertThat(testOffer.getName()).isEqualTo(DEFAULT_NAME);
         assertThat(testOffer.getDescription()).isEqualTo(DEFAULT_DESCRIPTION);
         assertThat(testOffer.getVolunteerType()).isEqualTo(DEFAULT_VOLUNTEER_TYPE);
         assertThat(testOffer.getInitialNoVacancies()).isEqualTo(DEFAULT_INITIAL_NO_VACANCIES);
         assertThat(testOffer.getActualNoVacancies()).isEqualTo(DEFAULT_ACTUAL_NO_VACANCIES);
-        assertThat(testOffer.getStatusTypeId()).isEqualTo(DEFAULT_STATUS_TYPE_ID);
         assertThat(testOffer.getDateFrom()).isEqualTo(DEFAULT_DATE_FROM);
         assertThat(testOffer.getDateTo()).isEqualTo(DEFAULT_DATE_TO);
         assertThat(testOffer.getWorkhoursPerMonth()).isEqualTo(DEFAULT_WORKHOURS_PER_MONTH);
-        assertThat(testOffer.getTermId()).isEqualTo(DEFAULT_TERM_ID);
         assertThat(testOffer.getDaytime()).isEqualTo(DEFAULT_DAYTIME);
         assertThat(testOffer.getWorkhours()).isEqualTo(DEFAULT_WORKHOURS);
 
@@ -205,46 +196,10 @@ public class OfferResourceIntTest {
 
     @Test
     @Transactional
-    public void checkProgramIdIsRequired() throws Exception {
-        int databaseSizeBeforeTest = offerRepository.findAll().size();
-        // set the field null
-        offer.setProgramId(null);
-
-        // Create the Offer, which fails.
-
-        restOfferMockMvc.perform(post("/api/offers")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(offer)))
-            .andExpect(status().isBadRequest());
-
-        List<Offer> offerList = offerRepository.findAll();
-        assertThat(offerList).hasSize(databaseSizeBeforeTest);
-    }
-
-    @Test
-    @Transactional
     public void checkNameIsRequired() throws Exception {
         int databaseSizeBeforeTest = offerRepository.findAll().size();
         // set the field null
         offer.setName(null);
-
-        // Create the Offer, which fails.
-
-        restOfferMockMvc.perform(post("/api/offers")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(offer)))
-            .andExpect(status().isBadRequest());
-
-        List<Offer> offerList = offerRepository.findAll();
-        assertThat(offerList).hasSize(databaseSizeBeforeTest);
-    }
-
-    @Test
-    @Transactional
-    public void checkStatusTypeIdIsRequired() throws Exception {
-        int databaseSizeBeforeTest = offerRepository.findAll().size();
-        // set the field null
-        offer.setStatusTypeId(null);
 
         // Create the Offer, which fails.
 
@@ -295,24 +250,6 @@ public class OfferResourceIntTest {
 
     @Test
     @Transactional
-    public void checkTermIdIsRequired() throws Exception {
-        int databaseSizeBeforeTest = offerRepository.findAll().size();
-        // set the field null
-        offer.setTermId(null);
-
-        // Create the Offer, which fails.
-
-        restOfferMockMvc.perform(post("/api/offers")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(offer)))
-            .andExpect(status().isBadRequest());
-
-        List<Offer> offerList = offerRepository.findAll();
-        assertThat(offerList).hasSize(databaseSizeBeforeTest);
-    }
-
-    @Test
-    @Transactional
     public void checkDaytimeIsRequired() throws Exception {
         int databaseSizeBeforeTest = offerRepository.findAll().size();
         // set the field null
@@ -340,17 +277,14 @@ public class OfferResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(offer.getId().intValue())))
-            .andExpect(jsonPath("$.[*].programId").value(hasItem(DEFAULT_PROGRAM_ID)))
             .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME.toString())))
             .andExpect(jsonPath("$.[*].description").value(hasItem(DEFAULT_DESCRIPTION.toString())))
             .andExpect(jsonPath("$.[*].volunteerType").value(hasItem(DEFAULT_VOLUNTEER_TYPE.toString())))
             .andExpect(jsonPath("$.[*].initialNoVacancies").value(hasItem(DEFAULT_INITIAL_NO_VACANCIES)))
             .andExpect(jsonPath("$.[*].actualNoVacancies").value(hasItem(DEFAULT_ACTUAL_NO_VACANCIES)))
-            .andExpect(jsonPath("$.[*].statusTypeId").value(hasItem(DEFAULT_STATUS_TYPE_ID)))
             .andExpect(jsonPath("$.[*].dateFrom").value(hasItem(sameInstant(DEFAULT_DATE_FROM))))
             .andExpect(jsonPath("$.[*].dateTo").value(hasItem(sameInstant(DEFAULT_DATE_TO))))
             .andExpect(jsonPath("$.[*].workhoursPerMonth").value(hasItem(DEFAULT_WORKHOURS_PER_MONTH)))
-            .andExpect(jsonPath("$.[*].termId").value(hasItem(DEFAULT_TERM_ID)))
             .andExpect(jsonPath("$.[*].daytime").value(hasItem(DEFAULT_DAYTIME.toString())))
             .andExpect(jsonPath("$.[*].workhours").value(hasItem(DEFAULT_WORKHOURS.toString())));
     }
@@ -366,17 +300,14 @@ public class OfferResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(offer.getId().intValue()))
-            .andExpect(jsonPath("$.programId").value(DEFAULT_PROGRAM_ID))
             .andExpect(jsonPath("$.name").value(DEFAULT_NAME.toString()))
             .andExpect(jsonPath("$.description").value(DEFAULT_DESCRIPTION.toString()))
             .andExpect(jsonPath("$.volunteerType").value(DEFAULT_VOLUNTEER_TYPE.toString()))
             .andExpect(jsonPath("$.initialNoVacancies").value(DEFAULT_INITIAL_NO_VACANCIES))
             .andExpect(jsonPath("$.actualNoVacancies").value(DEFAULT_ACTUAL_NO_VACANCIES))
-            .andExpect(jsonPath("$.statusTypeId").value(DEFAULT_STATUS_TYPE_ID))
             .andExpect(jsonPath("$.dateFrom").value(sameInstant(DEFAULT_DATE_FROM)))
             .andExpect(jsonPath("$.dateTo").value(sameInstant(DEFAULT_DATE_TO)))
             .andExpect(jsonPath("$.workhoursPerMonth").value(DEFAULT_WORKHOURS_PER_MONTH))
-            .andExpect(jsonPath("$.termId").value(DEFAULT_TERM_ID))
             .andExpect(jsonPath("$.daytime").value(DEFAULT_DAYTIME.toString()))
             .andExpect(jsonPath("$.workhours").value(DEFAULT_WORKHOURS.toString()));
     }
@@ -400,17 +331,14 @@ public class OfferResourceIntTest {
         // Update the offer
         Offer updatedOffer = offerRepository.findOne(offer.getId());
         updatedOffer
-            .programId(UPDATED_PROGRAM_ID)
             .name(UPDATED_NAME)
             .description(UPDATED_DESCRIPTION)
             .volunteerType(UPDATED_VOLUNTEER_TYPE)
             .initialNoVacancies(UPDATED_INITIAL_NO_VACANCIES)
             .actualNoVacancies(UPDATED_ACTUAL_NO_VACANCIES)
-            .statusTypeId(UPDATED_STATUS_TYPE_ID)
             .dateFrom(UPDATED_DATE_FROM)
             .dateTo(UPDATED_DATE_TO)
             .workhoursPerMonth(UPDATED_WORKHOURS_PER_MONTH)
-            .termId(UPDATED_TERM_ID)
             .daytime(UPDATED_DAYTIME)
             .workhours(UPDATED_WORKHOURS);
 
@@ -423,17 +351,14 @@ public class OfferResourceIntTest {
         List<Offer> offerList = offerRepository.findAll();
         assertThat(offerList).hasSize(databaseSizeBeforeUpdate);
         Offer testOffer = offerList.get(offerList.size() - 1);
-        assertThat(testOffer.getProgramId()).isEqualTo(UPDATED_PROGRAM_ID);
         assertThat(testOffer.getName()).isEqualTo(UPDATED_NAME);
         assertThat(testOffer.getDescription()).isEqualTo(UPDATED_DESCRIPTION);
         assertThat(testOffer.getVolunteerType()).isEqualTo(UPDATED_VOLUNTEER_TYPE);
         assertThat(testOffer.getInitialNoVacancies()).isEqualTo(UPDATED_INITIAL_NO_VACANCIES);
         assertThat(testOffer.getActualNoVacancies()).isEqualTo(UPDATED_ACTUAL_NO_VACANCIES);
-        assertThat(testOffer.getStatusTypeId()).isEqualTo(UPDATED_STATUS_TYPE_ID);
         assertThat(testOffer.getDateFrom()).isEqualTo(UPDATED_DATE_FROM);
         assertThat(testOffer.getDateTo()).isEqualTo(UPDATED_DATE_TO);
         assertThat(testOffer.getWorkhoursPerMonth()).isEqualTo(UPDATED_WORKHOURS_PER_MONTH);
-        assertThat(testOffer.getTermId()).isEqualTo(UPDATED_TERM_ID);
         assertThat(testOffer.getDaytime()).isEqualTo(UPDATED_DAYTIME);
         assertThat(testOffer.getWorkhours()).isEqualTo(UPDATED_WORKHOURS);
 
@@ -494,17 +419,14 @@ public class OfferResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(offer.getId().intValue())))
-            .andExpect(jsonPath("$.[*].programId").value(hasItem(DEFAULT_PROGRAM_ID)))
             .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME.toString())))
             .andExpect(jsonPath("$.[*].description").value(hasItem(DEFAULT_DESCRIPTION.toString())))
             .andExpect(jsonPath("$.[*].volunteerType").value(hasItem(DEFAULT_VOLUNTEER_TYPE.toString())))
             .andExpect(jsonPath("$.[*].initialNoVacancies").value(hasItem(DEFAULT_INITIAL_NO_VACANCIES)))
             .andExpect(jsonPath("$.[*].actualNoVacancies").value(hasItem(DEFAULT_ACTUAL_NO_VACANCIES)))
-            .andExpect(jsonPath("$.[*].statusTypeId").value(hasItem(DEFAULT_STATUS_TYPE_ID)))
             .andExpect(jsonPath("$.[*].dateFrom").value(hasItem(sameInstant(DEFAULT_DATE_FROM))))
             .andExpect(jsonPath("$.[*].dateTo").value(hasItem(sameInstant(DEFAULT_DATE_TO))))
             .andExpect(jsonPath("$.[*].workhoursPerMonth").value(hasItem(DEFAULT_WORKHOURS_PER_MONTH)))
-            .andExpect(jsonPath("$.[*].termId").value(hasItem(DEFAULT_TERM_ID)))
             .andExpect(jsonPath("$.[*].daytime").value(hasItem(DEFAULT_DAYTIME.toString())))
             .andExpect(jsonPath("$.[*].workhours").value(hasItem(DEFAULT_WORKHOURS.toString())));
     }

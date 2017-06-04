@@ -68,7 +68,7 @@ class ProgramGatlingTest extends Simulation {
             .exec(http("Create new program")
             .post("/api/programs")
             .headers(headers_http_authenticated)
-            .body(StringBody("""{"id":null, "providerId":"0", "name":"SAMPLE_TEXT", "highlight":"SAMPLE_TEXT", "dateTo":"2020-01-01T00:00:00.000Z", "dateFrom":"2020-01-01T00:00:00.000Z", "statusTypeId":"0", "shareProgram":"SAMPLE_TEXT"}""")).asJSON
+            .body(StringBody("""{"id":null, "name":"SAMPLE_TEXT", "highlight":"SAMPLE_TEXT", "dateTo":"2020-01-01T00:00:00.000Z", "dateFrom":"2020-01-01T00:00:00.000Z", "shareProgram":"SAMPLE_TEXT"}""")).asJSON
             .check(status.is(201))
             .check(headerRegex("Location", "(.*)").saveAs("new_program_url"))).exitHereIfFailed
             .pause(10)

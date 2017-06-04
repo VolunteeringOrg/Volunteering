@@ -125,7 +125,7 @@
                         entity: function () {
                             return {
                                 name: null,
-                                logoFilepath: null,
+                                logoPath: null,
                                 id: null
                             };
                         }

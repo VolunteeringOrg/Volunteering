@@ -2,35 +2,31 @@
     "fluentMethods": true,
     "relationships": [
         {
-            "relationshipName": "fk_program_offer",
-            "otherEntityName": "program",
-            "relationshipType": "many-to-one",
-            "otherEntityField": "id"
-        },
-        {
-            "relationshipName": "fk_statustype_offer",
+            "relationshipName": "statusType",
             "otherEntityName": "statusType",
             "relationshipType": "many-to-one",
             "relationshipValidateRules": [
                 "required"
             ],
-            "otherEntityField": "id"
+            "otherEntityField": "value"
         },
         {
-            "relationshipName": "fk_term_offer",
+            "relationshipName": "program",
+            "otherEntityName": "program",
+            "relationshipType": "many-to-one",
+            "relationshipValidateRules": [
+                "required"
+            ],
+            "otherEntityField": "name"
+        },
+        {
+            "relationshipName": "term",
             "otherEntityName": "term",
             "relationshipType": "many-to-one",
-            "otherEntityField": "id"
+            "otherEntityField": "value"
         }
     ],
     "fields": [
-        {
-            "fieldName": "programId",
-            "fieldType": "Integer",
-            "fieldValidateRules": [
-                "required"
-            ]
-        },
         {
             "fieldName": "name",
             "fieldType": "String",
@@ -65,13 +61,6 @@
             "fieldType": "Integer"
         },
         {
-            "fieldName": "statusTypeId",
-            "fieldType": "Integer",
-            "fieldValidateRules": [
-                "required"
-            ]
-        },
-        {
             "fieldName": "dateFrom",
             "fieldType": "ZonedDateTime",
             "fieldValidateRules": [
@@ -88,13 +77,6 @@
         {
             "fieldName": "workhoursPerMonth",
             "fieldType": "Integer"
-        },
-        {
-            "fieldName": "termId",
-            "fieldType": "Integer",
-            "fieldValidateRules": [
-                "required"
-            ]
         },
         {
             "fieldName": "daytime",

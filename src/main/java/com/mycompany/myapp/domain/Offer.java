@@ -27,10 +27,6 @@ public class Offer implements Serializable {
     private Long id;
 
     @NotNull
-    @Column(name = "program_id", nullable = false)
-    private Integer programId;
-
-    @NotNull
     @Size(max = 255)
     @Column(name = "name", length = 255, nullable = false)
     private String name;
@@ -50,10 +46,6 @@ public class Offer implements Serializable {
     private Integer actualNoVacancies;
 
     @NotNull
-    @Column(name = "status_type_id", nullable = false)
-    private Integer statusTypeId;
-
-    @NotNull
     @Column(name = "date_from", nullable = false)
     private ZonedDateTime dateFrom;
 
@@ -65,10 +57,6 @@ public class Offer implements Serializable {
     private Integer workhoursPerMonth;
 
     @NotNull
-    @Column(name = "term_id", nullable = false)
-    private Integer termId;
-
-    @NotNull
     @Size(max = 255)
     @Column(name = "daytime", length = 255, nullable = false)
     private String daytime;
@@ -77,15 +65,16 @@ public class Offer implements Serializable {
     @Column(name = "workhours", length = 255)
     private String workhours;
 
-    @ManyToOne
-    private Program fk_program_offer;
+    @ManyToOne(optional = false)
+    @NotNull
+    private StatusType statusType;
 
     @ManyToOne(optional = false)
     @NotNull
-    private StatusType fk_statustype_offer;
+    private Program program;
 
     @ManyToOne
-    private Term fk_term_offer;
+    private Term term;
 
     public Long getId() {
         return id;
@@ -93,19 +82,6 @@ public class Offer implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Integer getProgramId() {
-        return programId;
-    }
-
-    public Offer programId(Integer programId) {
-        this.programId = programId;
-        return this;
-    }
-
-    public void setProgramId(Integer programId) {
-        this.programId = programId;
     }
 
     public String getName() {
@@ -173,19 +149,6 @@ public class Offer implements Serializable {
         this.actualNoVacancies = actualNoVacancies;
     }
 
-    public Integer getStatusTypeId() {
-        return statusTypeId;
-    }
-
-    public Offer statusTypeId(Integer statusTypeId) {
-        this.statusTypeId = statusTypeId;
-        return this;
-    }
-
-    public void setStatusTypeId(Integer statusTypeId) {
-        this.statusTypeId = statusTypeId;
-    }
-
     public ZonedDateTime getDateFrom() {
         return dateFrom;
     }
@@ -225,19 +188,6 @@ public class Offer implements Serializable {
         this.workhoursPerMonth = workhoursPerMonth;
     }
 
-    public Integer getTermId() {
-        return termId;
-    }
-
-    public Offer termId(Integer termId) {
-        this.termId = termId;
-        return this;
-    }
-
-    public void setTermId(Integer termId) {
-        this.termId = termId;
-    }
-
     public String getDaytime() {
         return daytime;
     }
@@ -264,43 +214,43 @@ public class Offer implements Serializable {
         this.workhours = workhours;
     }
 
-    public Program getFk_program_offer() {
-        return fk_program_offer;
+    public StatusType getStatusType() {
+        return statusType;
     }
 
-    public Offer fk_program_offer(Program program) {
-        this.fk_program_offer = program;
+    public Offer statusType(StatusType statusType) {
+        this.statusType = statusType;
         return this;
     }
 
-    public void setFk_program_offer(Program program) {
-        this.fk_program_offer = program;
+    public void setStatusType(StatusType statusType) {
+        this.statusType = statusType;
     }
 
-    public StatusType getFk_statustype_offer() {
-        return fk_statustype_offer;
+    public Program getProgram() {
+        return program;
     }
 
-    public Offer fk_statustype_offer(StatusType statusType) {
-        this.fk_statustype_offer = statusType;
+    public Offer program(Program program) {
+        this.program = program;
         return this;
     }
 
-    public void setFk_statustype_offer(StatusType statusType) {
-        this.fk_statustype_offer = statusType;
+    public void setProgram(Program program) {
+        this.program = program;
     }
 
-    public Term getFk_term_offer() {
-        return fk_term_offer;
+    public Term getTerm() {
+        return term;
     }
 
-    public Offer fk_term_offer(Term term) {
-        this.fk_term_offer = term;
+    public Offer term(Term term) {
+        this.term = term;
         return this;
     }
 
-    public void setFk_term_offer(Term term) {
-        this.fk_term_offer = term;
+    public void setTerm(Term term) {
+        this.term = term;
     }
 
     @Override
@@ -327,17 +277,14 @@ public class Offer implements Serializable {
     public String toString() {
         return "Offer{" +
             "id=" + getId() +
-            ", programId='" + getProgramId() + "'" +
             ", name='" + getName() + "'" +
             ", description='" + getDescription() + "'" +
             ", volunteerType='" + getVolunteerType() + "'" +
             ", initialNoVacancies='" + getInitialNoVacancies() + "'" +
             ", actualNoVacancies='" + getActualNoVacancies() + "'" +
-            ", statusTypeId='" + getStatusTypeId() + "'" +
             ", dateFrom='" + getDateFrom() + "'" +
             ", dateTo='" + getDateTo() + "'" +
             ", workhoursPerMonth='" + getWorkhoursPerMonth() + "'" +
-            ", termId='" + getTermId() + "'" +
             ", daytime='" + getDaytime() + "'" +
             ", workhours='" + getWorkhours() + "'" +
             "}";

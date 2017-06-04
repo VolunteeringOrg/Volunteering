@@ -1,0 +1,25 @@
+{
+    "myappApp": {
+        "application" : {
+            "home": {
+                "title": "Applications",
+                "createLabel": "Dodaj Application",
+                "createOrEditLabel": "Dodaj lub edytuj: Application",
+                "search": "Szukaj Application"
+            },
+            "created": "Utworzono nowy Application z identyfikatorem {{ param }}",
+            "updated": "Uaktualniono Application z identyfikatorem {{ param }}",
+            "deleted": "Usunięto Application z identyfikatorem {{ param }}",
+            "delete": {
+                "question": "Czy na pewno chcesz usunąć Application {{ id }}?"
+            },
+            "detail": {
+                "title": "Application"
+            },
+            "decision": "Decision",
+            "feedback": "Feedback",
+            "offer": "Offer",
+            "user": "User"
+        }
+    }
+}

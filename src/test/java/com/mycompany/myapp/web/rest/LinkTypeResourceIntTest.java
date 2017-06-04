@@ -41,8 +41,8 @@ public class LinkTypeResourceIntTest {
     private static final String DEFAULT_NAME = "AAAAAAAAAA";
     private static final String UPDATED_NAME = "BBBBBBBBBB";
 
-    private static final String DEFAULT_LOGO_FILEPATH = "AAAAAAAAAA";
-    private static final String UPDATED_LOGO_FILEPATH = "BBBBBBBBBB";
+    private static final String DEFAULT_LOGO_PATH = "AAAAAAAAAA";
+    private static final String UPDATED_LOGO_PATH = "BBBBBBBBBB";
 
     @Autowired
     private LinkTypeRepository linkTypeRepository;
@@ -85,7 +85,7 @@ public class LinkTypeResourceIntTest {
     public static LinkType createEntity(EntityManager em) {
         LinkType linkType = new LinkType()
             .name(DEFAULT_NAME)
-            .logoFilepath(DEFAULT_LOGO_FILEPATH);
+            .logoPath(DEFAULT_LOGO_PATH);
         return linkType;
     }
 
@@ -111,7 +111,7 @@ public class LinkTypeResourceIntTest {
         assertThat(linkTypeList).hasSize(databaseSizeBeforeCreate + 1);
         LinkType testLinkType = linkTypeList.get(linkTypeList.size() - 1);
         assertThat(testLinkType.getName()).isEqualTo(DEFAULT_NAME);
-        assertThat(testLinkType.getLogoFilepath()).isEqualTo(DEFAULT_LOGO_FILEPATH);
+        assertThat(testLinkType.getLogoPath()).isEqualTo(DEFAULT_LOGO_PATH);
 
         // Validate the LinkType in Elasticsearch
         LinkType linkTypeEs = linkTypeSearchRepository.findOne(testLinkType.getId());
@@ -157,6 +157,24 @@ public class LinkTypeResourceIntTest {
 
     @Test
     @Transactional
+    public void checkLogoPathIsRequired() throws Exception {
+        int databaseSizeBeforeTest = linkTypeRepository.findAll().size();
+        // set the field null
+        linkType.setLogoPath(null);
+
+        // Create the LinkType, which fails.
+
+        restLinkTypeMockMvc.perform(post("/api/link-types")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(linkType)))
+            .andExpect(status().isBadRequest());
+
+        List<LinkType> linkTypeList = linkTypeRepository.findAll();
+        assertThat(linkTypeList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
     public void getAllLinkTypes() throws Exception {
         // Initialize the database
         linkTypeRepository.saveAndFlush(linkType);
@@ -167,7 +185,7 @@ public class LinkTypeResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(linkType.getId().intValue())))
             .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME.toString())))
-            .andExpect(jsonPath("$.[*].logoFilepath").value(hasItem(DEFAULT_LOGO_FILEPATH.toString())));
+            .andExpect(jsonPath("$.[*].logoPath").value(hasItem(DEFAULT_LOGO_PATH.toString())));
     }
 
     @Test
@@ -182,7 +200,7 @@ public class LinkTypeResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(linkType.getId().intValue()))
             .andExpect(jsonPath("$.name").value(DEFAULT_NAME.toString()))
-            .andExpect(jsonPath("$.logoFilepath").value(DEFAULT_LOGO_FILEPATH.toString()));
+            .andExpect(jsonPath("$.logoPath").value(DEFAULT_LOGO_PATH.toString()));
     }
 
     @Test
@@ -205,7 +223,7 @@ public class LinkTypeResourceIntTest {
         LinkType updatedLinkType = linkTypeRepository.findOne(linkType.getId());
         updatedLinkType
             .name(UPDATED_NAME)
-            .logoFilepath(UPDATED_LOGO_FILEPATH);
+            .logoPath(UPDATED_LOGO_PATH);
 
         restLinkTypeMockMvc.perform(put("/api/link-types")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -217,7 +235,7 @@ public class LinkTypeResourceIntTest {
         assertThat(linkTypeList).hasSize(databaseSizeBeforeUpdate);
         LinkType testLinkType = linkTypeList.get(linkTypeList.size() - 1);
         assertThat(testLinkType.getName()).isEqualTo(UPDATED_NAME);
-        assertThat(testLinkType.getLogoFilepath()).isEqualTo(UPDATED_LOGO_FILEPATH);
+        assertThat(testLinkType.getLogoPath()).isEqualTo(UPDATED_LOGO_PATH);
 
         // Validate the LinkType in Elasticsearch
         LinkType linkTypeEs = linkTypeSearchRepository.findOne(testLinkType.getId());
@@ -277,7 +295,7 @@ public class LinkTypeResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(linkType.getId().intValue())))
             .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME.toString())))
-            .andExpect(jsonPath("$.[*].logoFilepath").value(hasItem(DEFAULT_LOGO_FILEPATH.toString())));
+            .andExpect(jsonPath("$.[*].logoPath").value(hasItem(DEFAULT_LOGO_PATH.toString())));
     }
 
     @Test

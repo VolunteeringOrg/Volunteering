@@ -124,17 +124,14 @@
                     resolve: {
                         entity: function () {
                             return {
-                                programId: null,
                                 name: null,
                                 description: null,
                                 volunteerType: null,
                                 initialNoVacancies: null,
                                 actualNoVacancies: null,
-                                statusTypeId: null,
                                 dateFrom: null,
                                 dateTo: null,
                                 workhoursPerMonth: null,
-                                termId: null,
                                 daytime: null,
                                 workhours: null,
                                 id: null

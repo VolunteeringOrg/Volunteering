@@ -1,0 +1,24 @@
+{
+    "myappApp": {
+        "requirement" : {
+            "home": {
+                "title": "Requirements",
+                "createLabel": "Dodaj Requirement",
+                "createOrEditLabel": "Dodaj lub edytuj: Requirement",
+                "search": "Szukaj Requirement"
+            },
+            "created": "Utworzono nowy Requirement z identyfikatorem {{ param }}",
+            "updated": "Uaktualniono Requirement z identyfikatorem {{ param }}",
+            "deleted": "Usunięto Requirement z identyfikatorem {{ param }}",
+            "delete": {
+                "question": "Czy na pewno chcesz usunąć Requirement {{ id }}?"
+            },
+            "detail": {
+                "title": "Requirement"
+            },
+            "isObligatory": "Is Obligatory",
+            "value": "Value",
+            "offer": "Offer"
+        }
+    }
+}

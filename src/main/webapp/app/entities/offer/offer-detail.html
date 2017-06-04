@@ -4,10 +4,6 @@
     <hr>
     <jhi-alert-error></jhi-alert-error>
     <dl class="dl-horizontal jh-entity-details">
-        <dt><span data-translate="myappApp.offer.programId">Program Id</span></dt>
-        <dd>
-            <span>{{vm.offer.programId}}</span>
-        </dd>
         <dt><span data-translate="myappApp.offer.name">Name</span></dt>
         <dd>
             <span>{{vm.offer.name}}</span>
@@ -28,10 +24,6 @@
         <dd>
             <span>{{vm.offer.actualNoVacancies}}</span>
         </dd>
-        <dt><span data-translate="myappApp.offer.statusTypeId">Status Type Id</span></dt>
-        <dd>
-            <span>{{vm.offer.statusTypeId}}</span>
-        </dd>
         <dt><span data-translate="myappApp.offer.dateFrom">Date From</span></dt>
         <dd>
             <span>{{vm.offer.dateFrom | date:'medium'}}</span>
@@ -44,10 +36,6 @@
         <dd>
             <span>{{vm.offer.workhoursPerMonth}}</span>
         </dd>
-        <dt><span data-translate="myappApp.offer.termId">Term Id</span></dt>
-        <dd>
-            <span>{{vm.offer.termId}}</span>
-        </dd>
         <dt><span data-translate="myappApp.offer.daytime">Daytime</span></dt>
         <dd>
             <span>{{vm.offer.daytime}}</span>
@@ -56,17 +44,17 @@
         <dd>
             <span>{{vm.offer.workhours}}</span>
         </dd>
-        <dt><span data-translate="myappApp.offer.fk_program_offer">Fk Program Offer</span></dt>
+        <dt><span data-translate="myappApp.offer.statusType">Status Type</span></dt>
         <dd>
-            <a ui-sref="program-detail({id:vm.offer.fk_program_offer.id})">{{vm.offer.fk_program_offer.id}}</a>
+            <a ui-sref="status-type-detail({id:vm.offer.statusType.id})">{{vm.offer.statusType.value}}</a>
         </dd>
-        <dt><span data-translate="myappApp.offer.fk_statustype_offer">Fk Statustype Offer</span></dt>
+        <dt><span data-translate="myappApp.offer.program">Program</span></dt>
         <dd>
-            <a ui-sref="status-type-detail({id:vm.offer.fk_statustype_offer.id})">{{vm.offer.fk_statustype_offer.id}}</a>
+            <a ui-sref="program-detail({id:vm.offer.program.id})">{{vm.offer.program.name}}</a>
         </dd>
-        <dt><span data-translate="myappApp.offer.fk_term_offer">Fk Term Offer</span></dt>
+        <dt><span data-translate="myappApp.offer.term">Term</span></dt>
         <dd>
-            <a ui-sref="term-detail({id:vm.offer.fk_term_offer.id})">{{vm.offer.fk_term_offer.id}}</a>
+            <a ui-sref="term-detail({id:vm.offer.term.id})">{{vm.offer.term.value}}</a>
         </dd>
     </dl>
 

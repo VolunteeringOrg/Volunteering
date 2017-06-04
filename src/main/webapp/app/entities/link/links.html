@@ -36,25 +36,21 @@
             <thead>
                 <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
                     <th jh-sort-by="id"><span data-translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="providerId"><span data-translate="myappApp.link.providerId">Provider Id</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="linkTypeId"><span data-translate="myappApp.link.linkTypeId">Link Type Id</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="value"><span data-translate="myappApp.link.value">Value</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="fk_provider_link.id"><span data-translate="myappApp.link.fk_provider_link">Fk Provider Link</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="fk_linktype_link.id"><span data-translate="myappApp.link.fk_linktype_link">Fk Linktype Link</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="provider.name"><span data-translate="myappApp.link.provider">Provider</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="linkType.name"><span data-translate="myappApp.link.linkType">Link Type</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
                 <tr ng-repeat="link in vm.links track by link.id">
                     <td><a ui-sref="link-detail({id:link.id})">{{link.id}}</a></td>
-                    <td>{{link.providerId}}</td>
-                    <td>{{link.linkTypeId}}</td>
                     <td>{{link.value}}</td>
                     <td>
-                        <a ui-sref="provider-detail({id:link.fk_provider_link.id})">{{link.fk_provider_link.id}}</a>
+                        <a ui-sref="provider-detail({id:link.provider.id})">{{link.provider.name}}</a>
                     </td>
                     <td>
-                        <a ui-sref="link-type-detail({id:link.fk_linktype_link.id})">{{link.fk_linktype_link.id}}</a>
+                        <a ui-sref="link-type-detail({id:link.linkType.id})">{{link.linkType.name}}</a>
                     </td>
                     <td class="text-right">
                         <div class="btn-group flex-btn-group-container">

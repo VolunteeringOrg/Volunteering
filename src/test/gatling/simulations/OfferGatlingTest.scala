@@ -68,7 +68,7 @@ class OfferGatlingTest extends Simulation {
             .exec(http("Create new offer")
             .post("/api/offers")
             .headers(headers_http_authenticated)
-            .body(StringBody("""{"id":null, "programId":"0", "name":"SAMPLE_TEXT", "description":"SAMPLE_TEXT", "volunteerType":"SAMPLE_TEXT", "initialNoVacancies":"0", "actualNoVacancies":"0", "statusTypeId":"0", "dateFrom":"2020-01-01T00:00:00.000Z", "dateTo":"2020-01-01T00:00:00.000Z", "workhoursPerMonth":"0", "termId":"0", "daytime":"SAMPLE_TEXT", "workhours":"SAMPLE_TEXT"}""")).asJSON
+            .body(StringBody("""{"id":null, "name":"SAMPLE_TEXT", "description":"SAMPLE_TEXT", "volunteerType":"SAMPLE_TEXT", "initialNoVacancies":"0", "actualNoVacancies":"0", "dateFrom":"2020-01-01T00:00:00.000Z", "dateTo":"2020-01-01T00:00:00.000Z", "workhoursPerMonth":"0", "daytime":"SAMPLE_TEXT", "workhours":"SAMPLE_TEXT"}""")).asJSON
             .check(status.is(201))
             .check(headerRegex("Location", "(.*)").saveAs("new_offer_url"))).exitHereIfFailed
             .pause(10)

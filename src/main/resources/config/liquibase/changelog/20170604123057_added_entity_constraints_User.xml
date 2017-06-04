@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <!--
+        Added the constraints for entity User.
+    -->
+    <changeSet id="20170604123057-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="address_id"
+                                 baseTableName="jhi_user"
+                                 constraintName="fk_user_address_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="address"/>
+
+        <addForeignKeyConstraint baseColumnNames="user_type_id"
+                                 baseTableName="jhi_user"
+                                 constraintName="fk_user_user_type_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="user_type"/>
+
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,24 @@
+{
+    "myappApp": {
+        "offerDetails" : {
+            "home": {
+                "title": "Offer Details",
+                "createLabel": "Dodaj Offer Details",
+                "createOrEditLabel": "Dodaj lub edytuj: Offer Details",
+                "search": "Szukaj Offer Details"
+            },
+            "created": "Utworzono nowy Offer Details z identyfikatorem {{ param }}",
+            "updated": "Uaktualniono Offer Details z identyfikatorem {{ param }}",
+            "deleted": "Usunięto Offer Details z identyfikatorem {{ param }}",
+            "delete": {
+                "question": "Czy na pewno chcesz usunąć Offer Details {{ id }}?"
+            },
+            "detail": {
+                "title": "Offer Details"
+            },
+            "description": "Description",
+            "isValid": "Is Valid",
+            "offer": "Offer"
+        }
+    }
+}

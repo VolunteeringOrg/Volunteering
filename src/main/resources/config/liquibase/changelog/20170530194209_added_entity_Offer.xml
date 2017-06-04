@@ -21,10 +21,6 @@
             <column name="id" type="bigint" autoIncrement="${autoIncrement}">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="program_id" type="integer">
-                <constraints nullable="false" />
-            </column>
-
             <column name="name" type="varchar(255)">
                 <constraints nullable="false" />
             </column>
@@ -45,10 +41,6 @@
                 <constraints nullable="true" />
             </column>
 
-            <column name="status_type_id" type="integer">
-                <constraints nullable="false" />
-            </column>
-
             <column name="date_from" type="timestamp">
                 <constraints nullable="false" />
             </column>
@@ -61,10 +53,6 @@
                 <constraints nullable="true" />
             </column>
 
-            <column name="term_id" type="integer">
-                <constraints nullable="false" />
-            </column>
-
             <column name="daytime" type="varchar(255)">
                 <constraints nullable="false" />
             </column>
@@ -73,15 +61,15 @@
                 <constraints nullable="true" />
             </column>
 
-            <column name="fk_program_offer_id" type="bigint">
-                <constraints nullable="true" />
-            </column>
-
-            <column name="fk_statustype_offer_id" type="bigint">
+            <column name="status_type_id" type="bigint">
                 <constraints nullable="false" />
             </column>
 
-            <column name="fk_term_offer_id" type="bigint">
+            <column name="program_id" type="bigint">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="term_id" type="bigint">
                 <constraints nullable="true" />
             </column>
 

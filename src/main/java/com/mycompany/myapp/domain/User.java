@@ -95,6 +95,39 @@ public class User extends AbstractAuditingEntity implements Serializable {
     @BatchSize(size = 20)
     private Set<Authority> authorities = new HashSet<>();
 
+    @ManyToOne
+    private Address address;
+
+
+    @ManyToOne
+    private UserType userType;
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public User address(Address address) {
+        this.address = address;
+        return this;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
+    public UserType getUserType() {
+        return userType;
+    }
+
+    public User userType(UserType userType) {
+        this.userType = userType;
+        return this;
+    }
+
+    public void setUserType(UserType userType) {
+        this.userType = userType;
+    }
+
     public Long getId() {
         return id;
     }
@@ -177,11 +210,11 @@ public class User extends AbstractAuditingEntity implements Serializable {
     }
 
     public Instant getResetDate() {
-       return resetDate;
+        return resetDate;
     }
 
     public void setResetDate(Instant resetDate) {
-       this.resetDate = resetDate;
+        this.resetDate = resetDate;
     }
     public String getLangKey() {
         return langKey;

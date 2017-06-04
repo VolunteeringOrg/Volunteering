@@ -1,0 +1,27 @@
+{
+    "myappApp": {
+        "user" : {
+            "home": {
+                "title": "Users",
+                "createLabel": "Dodaj User",
+                "createOrEditLabel": "Dodaj lub edytuj: User",
+                "search": "Szukaj User"
+            },
+            "created": "Utworzono nowy User z identyfikatorem {{ param }}",
+            "updated": "Uaktualniono User z identyfikatorem {{ param }}",
+            "deleted": "Usunięto User z identyfikatorem {{ param }}",
+            "delete": {
+                "question": "Czy na pewno chcesz usunąć User {{ id }}?"
+            },
+            "detail": {
+                "title": "User"
+            },
+            "firstName": "First Name",
+            "lastName": "Last Name",
+            "login": "Login",
+            "password": "Password",
+            "address": "Address",
+            "userType": "User Type"
+        }
+    }
+}

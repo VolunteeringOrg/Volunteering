@@ -1,0 +1,22 @@
+{
+    "myappApp": {
+        "userType" : {
+            "home": {
+                "title": "User Types",
+                "createLabel": "Dodaj User Type",
+                "createOrEditLabel": "Dodaj lub edytuj: User Type",
+                "search": "Szukaj User Type"
+            },
+            "created": "Utworzono nowy User Type z identyfikatorem {{ param }}",
+            "updated": "Uaktualniono User Type z identyfikatorem {{ param }}",
+            "deleted": "Usunięto User Type z identyfikatorem {{ param }}",
+            "delete": {
+                "question": "Czy na pewno chcesz usunąć User Type {{ id }}?"
+            },
+            "detail": {
+                "title": "User Type"
+            },
+            "value": "Value"
+        }
+    }
+}

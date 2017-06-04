@@ -21,24 +21,16 @@
             <column name="id" type="bigint" autoIncrement="${autoIncrement}">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="provider_id" type="integer">
-                <constraints nullable="false" />
-            </column>
-
-            <column name="link_type_id" type="integer">
-                <constraints nullable="false" />
-            </column>
-
             <column name="jhi_value" type="varchar(255)">
                 <constraints nullable="false" />
             </column>
 
-            <column name="fk_provider_link_id" type="bigint">
-                <constraints nullable="true" />
+            <column name="provider_id" type="bigint">
+                <constraints nullable="false" />
             </column>
 
-            <column name="fk_linktype_link_id" type="bigint">
-                <constraints nullable="true" />
+            <column name="link_type_id" type="bigint">
+                <constraints nullable="false" />
             </column>
 
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->

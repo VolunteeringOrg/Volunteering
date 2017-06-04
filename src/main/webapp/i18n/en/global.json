@@ -15,6 +15,13 @@
                 "program": "Program",
                 "term": "Term",
                 "offer": "Offer",
+                "requirement": "Requirement",
+                "offerDetails": "Offer Details",
+                "xxx": "XXX",
+                "userType": "User Type",
+                "user": "User",
+                "application": "Application",
+                "document": "Document",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

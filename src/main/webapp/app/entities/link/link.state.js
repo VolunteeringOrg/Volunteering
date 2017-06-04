@@ -124,8 +124,6 @@
                     resolve: {
                         entity: function () {
                             return {
-                                providerId: null,
-                                linkTypeId: null,
                                 value: null,
                                 id: null
                             };

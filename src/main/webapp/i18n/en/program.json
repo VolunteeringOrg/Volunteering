@@ -16,16 +16,13 @@
             "detail": {
                 "title": "Program"
             },
-            "providerId": "Provider Id",
             "name": "Name",
             "highlight": "Highlight",
             "dateTo": "Date To",
             "dateFrom": "Date From",
-            "statusTypeId": "Status Type Id",
             "shareProgram": "Share Program",
-            "v": "V",
-            "fk_provider_program": "Fk Provider Program",
-            "fk_statustype_program": "Fk Statustype Program"
+            "provider": "Provider",
+            "statusType": "Status Type"
         }
     }
 }

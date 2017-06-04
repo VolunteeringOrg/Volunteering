@@ -68,7 +68,7 @@ class LinkTypeGatlingTest extends Simulation {
             .exec(http("Create new linkType")
             .post("/api/link-types")
             .headers(headers_http_authenticated)
-            .body(StringBody("""{"id":null, "name":"SAMPLE_TEXT", "logoFilepath":"SAMPLE_TEXT"}""")).asJSON
+            .body(StringBody("""{"id":null, "name":"SAMPLE_TEXT", "logoPath":"SAMPLE_TEXT"}""")).asJSON
             .check(status.is(201))
             .check(headerRegex("Location", "(.*)").saveAs("new_linkType_url"))).exitHereIfFailed
             .pause(10)

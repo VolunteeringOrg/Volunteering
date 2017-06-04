@@ -1,0 +1,31 @@
+
+<div>
+    <h2><span data-translate="myappApp.requirement.detail.title">Requirement</span> {{vm.requirement.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="myappApp.requirement.isObligatory">Is Obligatory</span></dt>
+        <dd>
+            <span>{{vm.requirement.isObligatory}}</span>
+        </dd>
+        <dt><span data-translate="myappApp.requirement.value">Value</span></dt>
+        <dd>
+            <span>{{vm.requirement.value}}</span>
+        </dd>
+        <dt><span data-translate="myappApp.requirement.offer">Offer</span></dt>
+        <dd>
+            <a ui-sref="offer-detail({id:vm.requirement.offer.id})">{{vm.requirement.offer.name}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="requirement-detail.edit({id:vm.requirement.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

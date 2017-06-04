@@ -2,33 +2,25 @@
     "fluentMethods": true,
     "relationships": [
         {
-            "relationshipName": "fk_provider_link",
+            "relationshipName": "provider",
             "otherEntityName": "provider",
             "relationshipType": "many-to-one",
-            "otherEntityField": "id"
+            "relationshipValidateRules": [
+                "required"
+            ],
+            "otherEntityField": "name"
         },
         {
-            "relationshipName": "fk_linktype_link",
+            "relationshipName": "linkType",
             "otherEntityName": "linkType",
             "relationshipType": "many-to-one",
-            "otherEntityField": "id"
+            "relationshipValidateRules": [
+                "required"
+            ],
+            "otherEntityField": "name"
         }
     ],
     "fields": [
-        {
-            "fieldName": "providerId",
-            "fieldType": "Integer",
-            "fieldValidateRules": [
-                "required"
-            ]
-        },
-        {
-            "fieldName": "linkTypeId",
-            "fieldType": "Integer",
-            "fieldValidateRules": [
-                "required"
-            ]
-        },
         {
             "fieldName": "value",
             "fieldType": "String",

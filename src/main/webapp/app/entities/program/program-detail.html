@@ -4,10 +4,6 @@
     <hr>
     <jhi-alert-error></jhi-alert-error>
     <dl class="dl-horizontal jh-entity-details">
-        <dt><span data-translate="myappApp.program.providerId">Provider Id</span></dt>
-        <dd>
-            <span>{{vm.program.providerId}}</span>
-        </dd>
         <dt><span data-translate="myappApp.program.name">Name</span></dt>
         <dd>
             <span>{{vm.program.name}}</span>
@@ -24,21 +20,17 @@
         <dd>
             <span>{{vm.program.dateFrom | date:'medium'}}</span>
         </dd>
-        <dt><span data-translate="myappApp.program.statusTypeId">Status Type Id</span></dt>
-        <dd>
-            <span>{{vm.program.statusTypeId}}</span>
-        </dd>
         <dt><span data-translate="myappApp.program.shareProgram">Share Program</span></dt>
         <dd>
             <span>{{vm.program.shareProgram}}</span>
         </dd>
-        <dt><span data-translate="myappApp.program.fk_provider_program">Fk Provider Program</span></dt>
+        <dt><span data-translate="myappApp.program.provider">Provider</span></dt>
         <dd>
-            <a ui-sref="provider-detail({id:vm.program.fk_provider_program.id})">{{vm.program.fk_provider_program.id}}</a>
+            <a ui-sref="provider-detail({id:vm.program.provider.id})">{{vm.program.provider.name}}</a>
         </dd>
-        <dt><span data-translate="myappApp.program.fk_statustype_program">Fk Statustype Program</span></dt>
+        <dt><span data-translate="myappApp.program.statusType">Status Type</span></dt>
         <dd>
-            <a ui-sref="status-type-detail({id:vm.program.fk_statustype_program.id})">{{vm.program.fk_statustype_program.id}}</a>
+            <a ui-sref="status-type-detail({id:vm.program.statusType.id})">{{vm.program.statusType.value}}</a>
         </dd>
     </dl>
 

@@ -1,0 +1,43 @@
+
+<div>
+    <h2><span data-translate="myappApp.user.detail.title">User</span> {{vm.user.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="myappApp.user.firstName">First Name</span></dt>
+        <dd>
+            <span>{{vm.user.firstName}}</span>
+        </dd>
+        <dt><span data-translate="myappApp.user.lastName">Last Name</span></dt>
+        <dd>
+            <span>{{vm.user.lastName}}</span>
+        </dd>
+        <dt><span data-translate="myappApp.user.login">Login</span></dt>
+        <dd>
+            <span>{{vm.user.login}}</span>
+        </dd>
+        <dt><span data-translate="myappApp.user.password">Password</span></dt>
+        <dd>
+            <span>{{vm.user.password}}</span>
+        </dd>
+        <dt><span data-translate="myappApp.user.address">Address</span></dt>
+        <dd>
+            <a ui-sref="address-detail({id:vm.user.address.id})">{{vm.user.address.email}}</a>
+        </dd>
+        <dt><span data-translate="myappApp.user.userType">User Type</span></dt>
+        <dd>
+            <a ui-sref="user-type-detail({id:vm.user.userType.id})">{{vm.user.userType.value}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="user-detail.edit({id:vm.user.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

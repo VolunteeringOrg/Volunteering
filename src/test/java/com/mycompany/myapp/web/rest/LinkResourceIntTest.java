@@ -3,6 +3,8 @@ package com.mycompany.myapp.web.rest;
 import com.mycompany.myapp.MyappApp;
 
 import com.mycompany.myapp.domain.Link;
+import com.mycompany.myapp.domain.Provider;
+import com.mycompany.myapp.domain.LinkType;
 import com.mycompany.myapp.repository.LinkRepository;
 import com.mycompany.myapp.repository.search.LinkSearchRepository;
 import com.mycompany.myapp.web.rest.errors.ExceptionTranslator;
@@ -37,12 +39,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = MyappApp.class)
 public class LinkResourceIntTest {
-
-    private static final Integer DEFAULT_PROVIDER_ID = 1;
-    private static final Integer UPDATED_PROVIDER_ID = 2;
-
-    private static final Integer DEFAULT_LINK_TYPE_ID = 1;
-    private static final Integer UPDATED_LINK_TYPE_ID = 2;
 
     private static final String DEFAULT_VALUE = "AAAAAAAAAA";
     private static final String UPDATED_VALUE = "BBBBBBBBBB";
@@ -87,9 +83,17 @@ public class LinkResourceIntTest {
      */
     public static Link createEntity(EntityManager em) {
         Link link = new Link()
-            .providerId(DEFAULT_PROVIDER_ID)
-            .linkTypeId(DEFAULT_LINK_TYPE_ID)
             .value(DEFAULT_VALUE);
+        // Add required entity
+        Provider provider = ProviderResourceIntTest.createEntity(em);
+        em.persist(provider);
+        em.flush();
+        link.setProvider(provider);
+        // Add required entity
+        LinkType linkType = LinkTypeResourceIntTest.createEntity(em);
+        em.persist(linkType);
+        em.flush();
+        link.setLinkType(linkType);
         return link;
     }
 
@@ -114,8 +118,6 @@ public class LinkResourceIntTest {
         List<Link> linkList = linkRepository.findAll();
         assertThat(linkList).hasSize(databaseSizeBeforeCreate + 1);
         Link testLink = linkList.get(linkList.size() - 1);
-        assertThat(testLink.getProviderId()).isEqualTo(DEFAULT_PROVIDER_ID);
-        assertThat(testLink.getLinkTypeId()).isEqualTo(DEFAULT_LINK_TYPE_ID);
         assertThat(testLink.getValue()).isEqualTo(DEFAULT_VALUE);
 
         // Validate the Link in Elasticsearch
@@ -140,42 +142,6 @@ public class LinkResourceIntTest {
         // Validate the Alice in the database
         List<Link> linkList = linkRepository.findAll();
         assertThat(linkList).hasSize(databaseSizeBeforeCreate);
-    }
-
-    @Test
-    @Transactional
-    public void checkProviderIdIsRequired() throws Exception {
-        int databaseSizeBeforeTest = linkRepository.findAll().size();
-        // set the field null
-        link.setProviderId(null);
-
-        // Create the Link, which fails.
-
-        restLinkMockMvc.perform(post("/api/links")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(link)))
-            .andExpect(status().isBadRequest());
-
-        List<Link> linkList = linkRepository.findAll();
-        assertThat(linkList).hasSize(databaseSizeBeforeTest);
-    }
-
-    @Test
-    @Transactional
-    public void checkLinkTypeIdIsRequired() throws Exception {
-        int databaseSizeBeforeTest = linkRepository.findAll().size();
-        // set the field null
-        link.setLinkTypeId(null);
-
-        // Create the Link, which fails.
-
-        restLinkMockMvc.perform(post("/api/links")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(link)))
-            .andExpect(status().isBadRequest());
-
-        List<Link> linkList = linkRepository.findAll();
-        assertThat(linkList).hasSize(databaseSizeBeforeTest);
     }
 
     @Test
@@ -207,8 +173,6 @@ public class LinkResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(link.getId().intValue())))
-            .andExpect(jsonPath("$.[*].providerId").value(hasItem(DEFAULT_PROVIDER_ID)))
-            .andExpect(jsonPath("$.[*].linkTypeId").value(hasItem(DEFAULT_LINK_TYPE_ID)))
             .andExpect(jsonPath("$.[*].value").value(hasItem(DEFAULT_VALUE.toString())));
     }
 
@@ -223,8 +187,6 @@ public class LinkResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(link.getId().intValue()))
-            .andExpect(jsonPath("$.providerId").value(DEFAULT_PROVIDER_ID))
-            .andExpect(jsonPath("$.linkTypeId").value(DEFAULT_LINK_TYPE_ID))
             .andExpect(jsonPath("$.value").value(DEFAULT_VALUE.toString()));
     }
 
@@ -247,8 +209,6 @@ public class LinkResourceIntTest {
         // Update the link
         Link updatedLink = linkRepository.findOne(link.getId());
         updatedLink
-            .providerId(UPDATED_PROVIDER_ID)
-            .linkTypeId(UPDATED_LINK_TYPE_ID)
             .value(UPDATED_VALUE);
 
         restLinkMockMvc.perform(put("/api/links")
@@ -260,8 +220,6 @@ public class LinkResourceIntTest {
         List<Link> linkList = linkRepository.findAll();
         assertThat(linkList).hasSize(databaseSizeBeforeUpdate);
         Link testLink = linkList.get(linkList.size() - 1);
-        assertThat(testLink.getProviderId()).isEqualTo(UPDATED_PROVIDER_ID);
-        assertThat(testLink.getLinkTypeId()).isEqualTo(UPDATED_LINK_TYPE_ID);
         assertThat(testLink.getValue()).isEqualTo(UPDATED_VALUE);
 
         // Validate the Link in Elasticsearch
@@ -321,8 +279,6 @@ public class LinkResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(link.getId().intValue())))
-            .andExpect(jsonPath("$.[*].providerId").value(hasItem(DEFAULT_PROVIDER_ID)))
-            .andExpect(jsonPath("$.[*].linkTypeId").value(hasItem(DEFAULT_LINK_TYPE_ID)))
             .andExpect(jsonPath("$.[*].value").value(hasItem(DEFAULT_VALUE.toString())));
     }
 

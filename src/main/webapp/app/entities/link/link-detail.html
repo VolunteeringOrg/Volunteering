@@ -4,25 +4,17 @@
     <hr>
     <jhi-alert-error></jhi-alert-error>
     <dl class="dl-horizontal jh-entity-details">
-        <dt><span data-translate="myappApp.link.providerId">Provider Id</span></dt>
-        <dd>
-            <span>{{vm.link.providerId}}</span>
-        </dd>
-        <dt><span data-translate="myappApp.link.linkTypeId">Link Type Id</span></dt>
-        <dd>
-            <span>{{vm.link.linkTypeId}}</span>
-        </dd>
         <dt><span data-translate="myappApp.link.value">Value</span></dt>
         <dd>
             <span>{{vm.link.value}}</span>
         </dd>
-        <dt><span data-translate="myappApp.link.fk_provider_link">Fk Provider Link</span></dt>
+        <dt><span data-translate="myappApp.link.provider">Provider</span></dt>
         <dd>
-            <a ui-sref="provider-detail({id:vm.link.fk_provider_link.id})">{{vm.link.fk_provider_link.id}}</a>
+            <a ui-sref="provider-detail({id:vm.link.provider.id})">{{vm.link.provider.name}}</a>
         </dd>
-        <dt><span data-translate="myappApp.link.fk_linktype_link">Fk Linktype Link</span></dt>
+        <dt><span data-translate="myappApp.link.linkType">Link Type</span></dt>
         <dd>
-            <a ui-sref="link-type-detail({id:vm.link.fk_linktype_link.id})">{{vm.link.fk_linktype_link.id}}</a>
+            <a ui-sref="link-type-detail({id:vm.link.linkType.id})">{{vm.link.linkType.name}}</a>
         </dd>
     </dl>
 

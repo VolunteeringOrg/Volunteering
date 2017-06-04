@@ -26,23 +26,17 @@ public class Link implements Serializable {
     private Long id;
 
     @NotNull
-    @Column(name = "provider_id", nullable = false)
-    private Integer providerId;
-
-    @NotNull
-    @Column(name = "link_type_id", nullable = false)
-    private Integer linkTypeId;
-
-    @NotNull
     @Size(max = 255)
     @Column(name = "jhi_value", length = 255, nullable = false)
     private String value;
 
-    @ManyToOne
-    private Provider fk_provider_link;
+    @ManyToOne(optional = false)
+    @NotNull
+    private Provider provider;
 
-    @ManyToOne
-    private LinkType fk_linktype_link;
+    @ManyToOne(optional = false)
+    @NotNull
+    private LinkType linkType;
 
     public Long getId() {
         return id;
@@ -50,32 +44,6 @@ public class Link implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Integer getProviderId() {
-        return providerId;
-    }
-
-    public Link providerId(Integer providerId) {
-        this.providerId = providerId;
-        return this;
-    }
-
-    public void setProviderId(Integer providerId) {
-        this.providerId = providerId;
-    }
-
-    public Integer getLinkTypeId() {
-        return linkTypeId;
-    }
-
-    public Link linkTypeId(Integer linkTypeId) {
-        this.linkTypeId = linkTypeId;
-        return this;
-    }
-
-    public void setLinkTypeId(Integer linkTypeId) {
-        this.linkTypeId = linkTypeId;
     }
 
     public String getValue() {
@@ -91,30 +59,30 @@ public class Link implements Serializable {
         this.value = value;
     }
 
-    public Provider getFk_provider_link() {
-        return fk_provider_link;
+    public Provider getProvider() {
+        return provider;
     }
 
-    public Link fk_provider_link(Provider provider) {
-        this.fk_provider_link = provider;
+    public Link provider(Provider provider) {
+        this.provider = provider;
         return this;
     }
 
-    public void setFk_provider_link(Provider provider) {
-        this.fk_provider_link = provider;
+    public void setProvider(Provider provider) {
+        this.provider = provider;
     }
 
-    public LinkType getFk_linktype_link() {
-        return fk_linktype_link;
+    public LinkType getLinkType() {
+        return linkType;
     }
 
-    public Link fk_linktype_link(LinkType linkType) {
-        this.fk_linktype_link = linkType;
+    public Link linkType(LinkType linkType) {
+        this.linkType = linkType;
         return this;
     }
 
-    public void setFk_linktype_link(LinkType linkType) {
-        this.fk_linktype_link = linkType;
+    public void setLinkType(LinkType linkType) {
+        this.linkType = linkType;
     }
 
     @Override
@@ -141,8 +109,6 @@ public class Link implements Serializable {
     public String toString() {
         return "Link{" +
             "id=" + getId() +
-            ", providerId='" + getProviderId() + "'" +
-            ", linkTypeId='" + getLinkTypeId() + "'" +
             ", value='" + getValue() + "'" +
             "}";
     }

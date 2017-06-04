@@ -124,12 +124,10 @@
                     resolve: {
                         entity: function () {
                             return {
-                                providerId: null,
                                 name: null,
                                 highlight: null,
                                 dateTo: null,
                                 dateFrom: null,
-                                statusTypeId: null,
                                 shareProgram: null,
                                 id: null
                             };

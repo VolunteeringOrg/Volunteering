@@ -1,0 +1,25 @@
+{
+    "myappApp": {
+        "document" : {
+            "home": {
+                "title": "Documents",
+                "createLabel": "Dodaj Document",
+                "createOrEditLabel": "Dodaj lub edytuj: Document",
+                "search": "Szukaj Document"
+            },
+            "created": "Utworzono nowy Document z identyfikatorem {{ param }}",
+            "updated": "Uaktualniono Document z identyfikatorem {{ param }}",
+            "deleted": "Usunięto Document z identyfikatorem {{ param }}",
+            "delete": {
+                "question": "Czy na pewno chcesz usunąć Document {{ id }}?"
+            },
+            "detail": {
+                "title": "Document"
+            },
+            "documentFile": "Document File",
+            "offer": "Offer",
+            "user": "User",
+            "application": "Application"
+        }
+    }
+}

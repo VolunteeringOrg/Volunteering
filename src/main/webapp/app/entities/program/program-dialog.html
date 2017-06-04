@@ -14,12 +14,6 @@
                     ng-model="vm.program.id" readonly />
         </div>
         <div class="form-group">
-            <label class="control-label" data-translate="myappApp.program.providerId" for="field_providerId">Provider Id</label>
-            <input type="number" class="form-control" name="providerId" id="field_providerId"
-                    ng-model="vm.program.providerId"
-                    />
-        </div>
-        <div class="form-group">
             <label class="control-label" data-translate="myappApp.program.name" for="field_name">Name</label>
             <input type="text" class="form-control" name="name" id="field_name"
                     ng-model="vm.program.name"
@@ -84,22 +78,6 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="control-label" data-translate="myappApp.program.statusTypeId" for="field_statusTypeId">Status Type Id</label>
-            <input type="number" class="form-control" name="statusTypeId" id="field_statusTypeId"
-                    ng-model="vm.program.statusTypeId"
-                    required/>
-            <div ng-show="editForm.statusTypeId.$invalid">
-                <p class="help-block"
-                    ng-show="editForm.statusTypeId.$error.required" data-translate="entity.validation.required">
-                    This field is required.
-                </p>
-                <p class="help-block"
-                    ng-show="editForm.statusTypeId.$error.number" data-translate="entity.validation.number">
-                    This field should be a number.
-                </p>
-            </div>
-        </div>
-        <div class="form-group">
             <label class="control-label" data-translate="myappApp.program.shareProgram" for="field_shareProgram">Share Program</label>
             <input type="text" class="form-control" name="shareProgram" id="field_shareProgram"
                     ng-model="vm.program.shareProgram"
@@ -113,16 +91,26 @@
         </div>
 
         <div class="form-group">
-            <label data-translate="myappApp.program.fk_provider_program" for="field_fk_provider_program">Fk Provider Program</label>
-            <select class="form-control" id="field_fk_provider_program" name="fk_provider_program" ng-model="vm.program.fk_provider_program" ng-options="provider as provider.id for provider in vm.providers track by provider.id">
-                <option value=""></option>
+            <label data-translate="myappApp.program.provider" for="field_provider">Provider</label>
+            <select class="form-control" id="field_provider" name="provider" ng-model="vm.program.provider" ng-options="provider as provider.name for provider in vm.providers track by provider.id" required>
             </select>
         </div>
+        <div ng-show="editForm.provider.$invalid">
+            <p class="help-block"
+                ng-show="editForm.provider.$error.required" data-translate="entity.validation.required">
+                This field is required.
+            </p>
+        </div>
         <div class="form-group">
-            <label data-translate="myappApp.program.fk_statustype_program" for="field_fk_statustype_program">Fk Statustype Program</label>
-            <select class="form-control" id="field_fk_statustype_program" name="fk_statustype_program" ng-model="vm.program.fk_statustype_program" ng-options="statusType as statusType.id for statusType in vm.statustypes track by statusType.id">
-                <option value=""></option>
+            <label data-translate="myappApp.program.statusType" for="field_statusType">Status Type</label>
+            <select class="form-control" id="field_statusType" name="statusType" ng-model="vm.program.statusType" ng-options="statusType as statusType.value for statusType in vm.statustypes track by statusType.id" required>
             </select>
+        </div>
+        <div ng-show="editForm.statusType.$invalid">
+            <p class="help-block"
+                ng-show="editForm.statusType.$error.required" data-translate="entity.validation.required">
+                This field is required.
+            </p>
         </div>
     </div>
     <div class="modal-footer">

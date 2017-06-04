@@ -4,7 +4,7 @@ describe('Controller Tests', function() {
 
     describe('Program Management Detail Controller', function() {
         var $scope, $rootScope;
-        var MockEntity, MockPreviousState, MockProgram, MockFk_provider_program, MockProvider, MockStatusType;
+        var MockEntity, MockPreviousState, MockProgram, MockProvider, MockStatusType;
         var createController;
 
         beforeEach(inject(function($injector) {
@@ -13,7 +13,6 @@ describe('Controller Tests', function() {
             MockEntity = jasmine.createSpy('MockEntity');
             MockPreviousState = jasmine.createSpy('MockPreviousState');
             MockProgram = jasmine.createSpy('MockProgram');
-            MockFk_provider_program = jasmine.createSpy('MockFk_provider_program');
             MockProvider = jasmine.createSpy('MockProvider');
             MockStatusType = jasmine.createSpy('MockStatusType');
             
@@ -24,7 +23,6 @@ describe('Controller Tests', function() {
                 'entity': MockEntity,
                 'previousState': MockPreviousState,
                 'Program': MockProgram,
-                'Fk_provider_program': MockFk_provider_program,
                 'Provider': MockProvider,
                 'StatusType': MockStatusType
             };

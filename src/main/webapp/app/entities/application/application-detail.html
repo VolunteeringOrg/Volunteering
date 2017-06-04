@@ -1,0 +1,35 @@
+
+<div>
+    <h2><span data-translate="myappApp.application.detail.title">Application</span> {{vm.application.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="myappApp.application.decision">Decision</span></dt>
+        <dd>
+            <span>{{vm.application.decision}}</span>
+        </dd>
+        <dt><span data-translate="myappApp.application.feedback">Feedback</span></dt>
+        <dd>
+            <span>{{vm.application.feedback}}</span>
+        </dd>
+        <dt><span data-translate="myappApp.application.offer">Offer</span></dt>
+        <dd>
+            <a ui-sref="offer-detail({id:vm.application.offer.id})">{{vm.application.offer.name}}</a>
+        </dd>
+        <dt><span data-translate="myappApp.application.user">User</span></dt>
+        <dd>
+            {{vm.application.user.login}}
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="application-detail.edit({id:vm.application.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

@@ -3,6 +3,8 @@ package com.mycompany.myapp.web.rest;
 import com.mycompany.myapp.MyappApp;
 
 import com.mycompany.myapp.domain.Program;
+import com.mycompany.myapp.domain.Provider;
+import com.mycompany.myapp.domain.StatusType;
 import com.mycompany.myapp.repository.ProgramRepository;
 import com.mycompany.myapp.repository.search.ProgramSearchRepository;
 import com.mycompany.myapp.web.rest.errors.ExceptionTranslator;
@@ -43,9 +45,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(classes = MyappApp.class)
 public class ProgramResourceIntTest {
 
-    private static final Integer DEFAULT_PROVIDER_ID = 1;
-    private static final Integer UPDATED_PROVIDER_ID = 2;
-
     private static final String DEFAULT_NAME = "AAAAAAAAAA";
     private static final String UPDATED_NAME = "BBBBBBBBBB";
 
@@ -57,9 +56,6 @@ public class ProgramResourceIntTest {
 
     private static final ZonedDateTime DEFAULT_DATE_FROM = ZonedDateTime.ofInstant(Instant.ofEpochMilli(0L), ZoneOffset.UTC);
     private static final ZonedDateTime UPDATED_DATE_FROM = ZonedDateTime.now(ZoneId.systemDefault()).withNano(0);
-
-    private static final Integer DEFAULT_STATUS_TYPE_ID = 1;
-    private static final Integer UPDATED_STATUS_TYPE_ID = 2;
 
     private static final String DEFAULT_SHARE_PROGRAM = "AAAAAAAAAA";
     private static final String UPDATED_SHARE_PROGRAM = "BBBBBBBBBB";
@@ -104,13 +100,21 @@ public class ProgramResourceIntTest {
      */
     public static Program createEntity(EntityManager em) {
         Program program = new Program()
-            .providerId(DEFAULT_PROVIDER_ID)
             .name(DEFAULT_NAME)
             .highlight(DEFAULT_HIGHLIGHT)
             .dateTo(DEFAULT_DATE_TO)
             .dateFrom(DEFAULT_DATE_FROM)
-            .statusTypeId(DEFAULT_STATUS_TYPE_ID)
             .shareProgram(DEFAULT_SHARE_PROGRAM);
+        // Add required entity
+        Provider provider = ProviderResourceIntTest.createEntity(em);
+        em.persist(provider);
+        em.flush();
+        program.setProvider(provider);
+        // Add required entity
+        StatusType statusType = StatusTypeResourceIntTest.createEntity(em);
+        em.persist(statusType);
+        em.flush();
+        program.setStatusType(statusType);
         return program;
     }
 
@@ -135,12 +139,10 @@ public class ProgramResourceIntTest {
         List<Program> programList = programRepository.findAll();
         assertThat(programList).hasSize(databaseSizeBeforeCreate + 1);
         Program testProgram = programList.get(programList.size() - 1);
-        assertThat(testProgram.getProviderId()).isEqualTo(DEFAULT_PROVIDER_ID);
         assertThat(testProgram.getName()).isEqualTo(DEFAULT_NAME);
         assertThat(testProgram.getHighlight()).isEqualTo(DEFAULT_HIGHLIGHT);
         assertThat(testProgram.getDateTo()).isEqualTo(DEFAULT_DATE_TO);
         assertThat(testProgram.getDateFrom()).isEqualTo(DEFAULT_DATE_FROM);
-        assertThat(testProgram.getStatusTypeId()).isEqualTo(DEFAULT_STATUS_TYPE_ID);
         assertThat(testProgram.getShareProgram()).isEqualTo(DEFAULT_SHARE_PROGRAM);
 
         // Validate the Program in Elasticsearch
@@ -205,24 +207,6 @@ public class ProgramResourceIntTest {
 
     @Test
     @Transactional
-    public void checkStatusTypeIdIsRequired() throws Exception {
-        int databaseSizeBeforeTest = programRepository.findAll().size();
-        // set the field null
-        program.setStatusTypeId(null);
-
-        // Create the Program, which fails.
-
-        restProgramMockMvc.perform(post("/api/programs")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(program)))
-            .andExpect(status().isBadRequest());
-
-        List<Program> programList = programRepository.findAll();
-        assertThat(programList).hasSize(databaseSizeBeforeTest);
-    }
-
-    @Test
-    @Transactional
     public void getAllPrograms() throws Exception {
         // Initialize the database
         programRepository.saveAndFlush(program);
@@ -232,12 +216,10 @@ public class ProgramResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(program.getId().intValue())))
-            .andExpect(jsonPath("$.[*].providerId").value(hasItem(DEFAULT_PROVIDER_ID)))
             .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME.toString())))
             .andExpect(jsonPath("$.[*].highlight").value(hasItem(DEFAULT_HIGHLIGHT.toString())))
             .andExpect(jsonPath("$.[*].dateTo").value(hasItem(sameInstant(DEFAULT_DATE_TO))))
             .andExpect(jsonPath("$.[*].dateFrom").value(hasItem(sameInstant(DEFAULT_DATE_FROM))))
-            .andExpect(jsonPath("$.[*].statusTypeId").value(hasItem(DEFAULT_STATUS_TYPE_ID)))
             .andExpect(jsonPath("$.[*].shareProgram").value(hasItem(DEFAULT_SHARE_PROGRAM.toString())));
     }
 
@@ -252,12 +234,10 @@ public class ProgramResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(program.getId().intValue()))
-            .andExpect(jsonPath("$.providerId").value(DEFAULT_PROVIDER_ID))
             .andExpect(jsonPath("$.name").value(DEFAULT_NAME.toString()))
             .andExpect(jsonPath("$.highlight").value(DEFAULT_HIGHLIGHT.toString()))
             .andExpect(jsonPath("$.dateTo").value(sameInstant(DEFAULT_DATE_TO)))
             .andExpect(jsonPath("$.dateFrom").value(sameInstant(DEFAULT_DATE_FROM)))
-            .andExpect(jsonPath("$.statusTypeId").value(DEFAULT_STATUS_TYPE_ID))
             .andExpect(jsonPath("$.shareProgram").value(DEFAULT_SHARE_PROGRAM.toString()));
     }
 
@@ -280,12 +260,10 @@ public class ProgramResourceIntTest {
         // Update the program
         Program updatedProgram = programRepository.findOne(program.getId());
         updatedProgram
-            .providerId(UPDATED_PROVIDER_ID)
             .name(UPDATED_NAME)
             .highlight(UPDATED_HIGHLIGHT)
             .dateTo(UPDATED_DATE_TO)
             .dateFrom(UPDATED_DATE_FROM)
-            .statusTypeId(UPDATED_STATUS_TYPE_ID)
             .shareProgram(UPDATED_SHARE_PROGRAM);
 
         restProgramMockMvc.perform(put("/api/programs")
@@ -297,12 +275,10 @@ public class ProgramResourceIntTest {
         List<Program> programList = programRepository.findAll();
         assertThat(programList).hasSize(databaseSizeBeforeUpdate);
         Program testProgram = programList.get(programList.size() - 1);
-        assertThat(testProgram.getProviderId()).isEqualTo(UPDATED_PROVIDER_ID);
         assertThat(testProgram.getName()).isEqualTo(UPDATED_NAME);
         assertThat(testProgram.getHighlight()).isEqualTo(UPDATED_HIGHLIGHT);
         assertThat(testProgram.getDateTo()).isEqualTo(UPDATED_DATE_TO);
         assertThat(testProgram.getDateFrom()).isEqualTo(UPDATED_DATE_FROM);
-        assertThat(testProgram.getStatusTypeId()).isEqualTo(UPDATED_STATUS_TYPE_ID);
         assertThat(testProgram.getShareProgram()).isEqualTo(UPDATED_SHARE_PROGRAM);
 
         // Validate the Program in Elasticsearch
@@ -362,12 +338,10 @@ public class ProgramResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(program.getId().intValue())))
-            .andExpect(jsonPath("$.[*].providerId").value(hasItem(DEFAULT_PROVIDER_ID)))
             .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME.toString())))
             .andExpect(jsonPath("$.[*].highlight").value(hasItem(DEFAULT_HIGHLIGHT.toString())))
             .andExpect(jsonPath("$.[*].dateTo").value(hasItem(sameInstant(DEFAULT_DATE_TO))))
             .andExpect(jsonPath("$.[*].dateFrom").value(hasItem(sameInstant(DEFAULT_DATE_FROM))))
-            .andExpect(jsonPath("$.[*].statusTypeId").value(hasItem(DEFAULT_STATUS_TYPE_ID)))
             .andExpect(jsonPath("$.[*].shareProgram").value(hasItem(DEFAULT_SHARE_PROGRAM.toString())));
     }
 
