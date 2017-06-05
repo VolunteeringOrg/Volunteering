@@ -1,0 +1,54 @@
+version: '2'
+services:
+    myapp-app:
+        image: myapp
+        environment:
+            - SPRING_PROFILES_ACTIVE=prod,swagger
+            - EUREKA_CLIENT_SERVICE-URL_DEFAULTZONE=http://admin:$${jhipster.registry.password}@jhipster-registry:8761/eureka
+            - SPRING_CLOUD_CONFIG_URI=http://admin:$${jhipster.registry.password}@jhipster-registry:8761/config
+            - SPRING_DATASOURCE_URL=jdbc:oracle:thin:@myapp-oracle:1521:myapp
+            - JHIPSTER_SLEEP=30
+            - SPRING_DATA_ELASTICSEARCH_CLUSTER_NODES=myapp-elasticsearch:9300
+            - SPRING_CLOUD_STREAM_KAFKA_BINDER_BROKERS=kafka
+            - SPRING_CLOUD_STREAM_KAFKA_BINDER_ZK_NODES=zookeeper
+            - JHIPSTER_LOGGING_LOGSTASH_ENABLED=true
+            - JHIPSTER_LOGGING_LOGSTASH_HOST=jhipster-logstash
+            - JHIPSTER_METRICS_LOGS_ENABLED=true
+            - JHIPSTER_METRICS_LOGS_REPORT_FREQUENCY=60
+            - JHIPSTER_REGISTRY_PASSWORD=admin
+        ports:
+            - 8080:8080
+    myapp-oracle:
+        image: sath89/oracle-12c:latest
+        environment:
+            - DBCA_TOTAL_MEMORY=1024
+            - WEB_CONSOLE=true
+    myapp-elasticsearch:
+        image: elasticsearch:2.4.1
+    
+    zookeeper:
+        extends:
+            file: kafka.yml
+            service: zookeeper
+    kafka:
+        extends:
+            file: kafka.yml
+            service: kafka
+    jhipster-registry:
+        extends:
+            file: jhipster-registry.yml
+            service: jhipster-registry
+
+    jhipster-elasticsearch:
+        extends:
+            file: jhipster-console.yml
+            service: jhipster-elasticsearch
+    jhipster-logstash:
+        extends:
+          file: jhipster-console.yml
+          service: jhipster-logstash
+    jhipster-console:
+        extends:
+            file: jhipster-console.yml
+            service: jhipster-console
+

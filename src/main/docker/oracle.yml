@@ -1,7 +1,8 @@
 version: '2'
 services:
     myapp-oracle:
-        image: sath89/oracle-12c:latest
+        image: sath89/oracle-12c
+        #:latest
         # volumes:
         #     - ~/volumes/jhipster/myapp/oracle/data:/u01/app/oracle
         environment:
