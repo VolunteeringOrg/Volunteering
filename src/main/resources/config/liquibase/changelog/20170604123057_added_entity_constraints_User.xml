@@ -7,7 +7,12 @@
         Added the constraints for entity User.
     -->
     <changeSet id="20170604123057-2" author="jhipster">
-        
+        <!-- if not exists -->
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="jhi_user"/>
+            </not>
+        </preConditions>
         <addForeignKeyConstraint baseColumnNames="address_id"
                                  baseTableName="jhi_user"
                                  constraintName="fk_user_address_id"

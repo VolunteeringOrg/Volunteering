@@ -15,7 +15,6 @@
     <include file="classpath:config/liquibase/changelog/20170530194209_added_entity_Offer.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20170604065440_added_entity_Requirement.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20170604122222_added_entity_OfferDetails.xml" relativeToChangelogFile="false"/>
-    <include file="classpath:config/liquibase/changelog/20170604122323_added_entity_XXX.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20170604122819_added_entity_UserType.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20170604123057_added_entity_User.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20170604124104_added_entity_Application.xml" relativeToChangelogFile="false"/>
