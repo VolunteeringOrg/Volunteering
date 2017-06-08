@@ -33,15 +33,15 @@ apply plugin: 'com.moowork.node'
 apply plugin: 'com.moowork.gulp'
 apply plugin: 'io.spring.dependency-management'
 dependencyManagement {
-  imports {
-    mavenBom 'org.springframework.cloud:spring-cloud-stream-dependencies:' + spring_cloud_stream_version
-    mavenBom 'org.springframework.cloud:spring-cloud-dependencies:' + spring_cloud_version
-  }
+    imports {
+        mavenBom 'org.springframework.cloud:spring-cloud-stream-dependencies:' + spring_cloud_stream_version
+        mavenBom 'org.springframework.cloud:spring-cloud-dependencies:' + spring_cloud_version
+    }
 }
 defaultTasks 'bootRun'
 
 bootRepackage {
-   mainClass = 'com.mycompany.myapp.MyappApp'
+    mainClass = 'com.mycompany.myapp.MyappApp'
 }
 
 war {
@@ -143,14 +143,7 @@ repositories {
     maven { url 'https://oss.sonatype.org/content/repositories/releases' }
     maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
     maven { url 'http://repo.maven.apache.org/maven2' }
-//    maven {
-//        url "https://www.oracle.com/content/secure/maven/content"
-//    }
-//    maven {
-//        url "https://maven.oracle.com"
-//    }
-//}
-//
+}
 dependencies {
     compile files('./src/main/resources/ojdbc7.jar')
 }
