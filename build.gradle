@@ -1,3 +1,4 @@
+import groovy.json.JsonSlurper
 import org.gradle.internal.os.OperatingSystem
 
 buildscript {
@@ -8,14 +9,6 @@ buildscript {
         maven { url "http://repo.spring.io/plugins-release" }
         maven { url "http://repo.spring.io/milestone" }
         maven { url "https://plugins.gradle.org/m2/" }
-        maven {
-            url "https://www.oracle.com/content/secure/maven/content"
-            name "maven.oracle.com"
-            credentials {
-                username mavenOracleUsername
-                password mavenOraclePassword
-            }
-        }
     }
     dependencies {
         classpath "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:2.1"
@@ -103,6 +96,7 @@ task testReport(type: TestReport) {
 }
 
 apply from: 'gradle/yeoman.gradle'
+apply from: 'gradle/sonar.gradle'
 apply from: 'gradle/liquibase.gradle'
 apply from: 'gradle/gatling.gradle'
 apply from: 'gradle/mapstruct.gradle'
@@ -147,14 +141,7 @@ repositories {
     maven { url 'https://oss.sonatype.org/content/repositories/releases' }
     maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
     maven { url 'http://repo.maven.apache.org/maven2' }
-    maven {
-        url "https://www.oracle.com/content/secure/maven/content"
-        name "maven.oracle.com"
-        credentials {
-            username mavenOracleUsername
-            password mavenOraclePassword
-        }
-    }
+    maven { url "https://maven.oracle.com" }
 }
 
 dependencies {
