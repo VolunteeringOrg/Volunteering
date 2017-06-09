@@ -7,7 +7,7 @@ set serveroutput off
 --column type format a40
 --set linesize 300 
 set trimspool on
-spool /home/lxuserb/Volunteering/out.txt
+spool ~/Volunteering/out.txt
 --select table_name, owner from all_tables order by table_name, owner;
 
 desc address
@@ -41,10 +41,6 @@ desc jhi_user
 desc user_type
 
 select dbms_xdb.gethttpport from dual;
-
-select dbms_xdb.gethttpsport from dual;
-
-select dbms_xdb.getftpport from dual;
 
 select sys_context('userenv','instance_name') from dual;
 
