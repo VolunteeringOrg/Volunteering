@@ -101,7 +101,7 @@ public class User extends AbstractAuditingEntity implements Serializable {
 //
 //    @ManyToOne
 //    private UserType userType;
-
+//
 //    @OneToMany(mappedBy = "user")
 //    @JsonIgnore
 //    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
@@ -236,7 +236,7 @@ public class User extends AbstractAuditingEntity implements Serializable {
 //    public void setUserType(UserType userType) {
 //        this.userType = userType;
 //    }
-
+//
 //    public Set<Application> getApplications() {
 //        return applications;
 //    }
@@ -261,7 +261,7 @@ public class User extends AbstractAuditingEntity implements Serializable {
 //    public void setApplications(Set<Application> applications) {
 //        this.applications = applications;
 //    }
-//
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
