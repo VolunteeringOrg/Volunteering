@@ -95,17 +95,17 @@ public class User extends AbstractAuditingEntity implements Serializable {
     @BatchSize(size = 20)
     private Set<Authority> authorities = new HashSet<>();
 
-    @ManyToOne(optional = false)
-    @NotNull
-    private Address address;
-
-    @ManyToOne
-    private UserType userType;
-
-    @OneToMany(mappedBy = "user")
-    @JsonIgnore
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    private Set<Application> applications = new HashSet<>();
+//    @ManyToOne(optional = false)
+//    @NotNull
+//    private Address address;
+//
+//    @ManyToOne
+//    private UserType userType;
+//
+//    @OneToMany(mappedBy = "user")
+//    @JsonIgnore
+//    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+//    private Set<Application> applications = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -211,56 +211,56 @@ public class User extends AbstractAuditingEntity implements Serializable {
         this.authorities = authorities;
     }
 
-    public Address getAddress() {
-        return address;
-    }
-
-    public User address(Address address) {
-        this.address = address;
-        return this;
-    }
-
-    public void setAddress(Address address) {
-        this.address = address;
-    }
-
-    public UserType getUserType() {
-        return userType;
-    }
-
-    public User userType(UserType userType) {
-        this.userType = userType;
-        return this;
-    }
-
-    public void setUserType(UserType userType) {
-        this.userType = userType;
-    }
-
-    public Set<Application> getApplications() {
-        return applications;
-    }
-
-    public User applications(Set<Application> applications) {
-        this.applications = applications;
-        return this;
-    }
-
-    public User addApplication(Application application) {
-        this.applications.add(application);
-        application.setUser(this);
-        return this;
-    }
-
-    public User removeApplication(Application application) {
-        this.applications.remove(application);
-        application.setUser(null);
-        return this;
-    }
-
-    public void setApplications(Set<Application> applications) {
-        this.applications = applications;
-    }
+//    public Address getAddress() {
+//        return address;
+//    }
+//
+//    public User address(Address address) {
+//        this.address = address;
+//        return this;
+//    }
+//
+//    public void setAddress(Address address) {
+//        this.address = address;
+//    }
+//
+//    public UserType getUserType() {
+//        return userType;
+//    }
+//
+//    public User userType(UserType userType) {
+//        this.userType = userType;
+//        return this;
+//    }
+//
+//    public void setUserType(UserType userType) {
+//        this.userType = userType;
+//    }
+//
+//    public Set<Application> getApplications() {
+//        return applications;
+//    }
+//
+//    public User applications(Set<Application> applications) {
+//        this.applications = applications;
+//        return this;
+//    }
+//
+//    public User addApplication(Application application) {
+//        this.applications.add(application);
+//        application.setUser(this);
+//        return this;
+//    }
+//
+//    public User removeApplication(Application application) {
+//        this.applications.remove(application);
+//        application.setUser(null);
+//        return this;
+//    }
+//
+//    public void setApplications(Set<Application> applications) {
+//        this.applications = applications;
+//    }
 
     @Override
     public boolean equals(Object o) {
