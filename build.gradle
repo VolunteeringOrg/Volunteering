@@ -150,18 +150,18 @@ repositories {
     maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
     maven { url 'http://repo.maven.apache.org/maven2' }
     maven {
-        url "https://www.oracle.com/content/secure/maven/content"
-        name "maven.oracle.com"
+        url 'https://www.oracle.com/content/secure/maven/content'
+        name 'maven.oracle.com'
         credentials {
             username mavenOracleUsername
             password mavenOraclePassword
         }
     }
 }
-//dependencies {
-//    compile files('./src/main/resources/ojdbc7.jar')
-//}
-//
+dependencies {
+    compile files('./src/main/resources/ojdbc7.jar')
+}
+
 dependencies {
     compile "io.github.jhipster:jhipster:${jhipster_server_version}"
     compile "io.dropwizard.metrics:metrics-core:${dropwizard_metrics_version}"
@@ -245,7 +245,7 @@ dependencies {
     testCompile "io.gatling.highcharts:gatling-charts-highcharts:${gatling_version}"
     testCompile "com.h2database:h2"
     // more information at https://blogs.oracle.com/dev2dev/entry/how_to_get_oracle_jdbc
-    //compile "com.oracle.jdbc:ojdbc7:${oracle_version}"
+    compile "com.oracle.jdbc:ojdbc7:${oracle_version}"
 //    compile "com.oracle.jdbc:ojdbc8:${oracle_version}"
     testCompile "org.springframework.cloud:spring-cloud-stream-test-support"
     optional "org.springframework.boot:spring-boot-configuration-processor:${spring_boot_version}"

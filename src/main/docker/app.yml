@@ -13,6 +13,8 @@ services:
             - SPRING_CLOUD_STREAM_KAFKA_BINDER_ZK_NODES=zookeeper
         ports:
             - 8080:8080
+        links:
+            - myapp-oracle:myapp-oracle
     myapp-elasticsearch:
         extends:
             file: elasticsearch.yml
@@ -33,14 +35,14 @@ services:
             service: jhipster-registry
         environment:
             - SPRING_CLOUD_CONFIG_SERVER_NATIVE_SEARCH_LOCATIONS=file:./central-config/docker-config/
-#    myapp-oracle:
-#            image: sath89/oracle-12c
+    myapp-oracle:
+            image: sath89/oracle-12c
 #            :latest
-#             volumes:
-#                 - ~/volumes/jhipster/myapp/oracle/data:/u01/app/oracle
-#            environment:
-#                - DBCA_TOTAL_MEMORY=1024
-#                - WEB_CONSOLE=true
-#            ports:
-#                - 1580:8080
-#                - 1521:1521
+            volumes:
+                 - ~/volumes/jhipster/myapp/oracle/data:/u01/app/oracle
+            environment:
+                - DBCA_TOTAL_MEMORY=1024
+                - WEB_CONSOLE=true
+            ports:
+                - 1580:8080
+                - 1521:1521

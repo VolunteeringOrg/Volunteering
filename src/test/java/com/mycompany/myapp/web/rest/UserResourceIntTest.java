@@ -96,10 +96,10 @@ public class UserResourceIntTest {
             .login(DEFAULT_LOGIN)
             .password(DEFAULT_PASSWORD);
         // Add required entity
-        Address address = AddressResourceIntTest.createEntity(em);
-        em.persist(address);
-        em.flush();
-        user.setAddress(address);
+//        Address address = AddressResourceIntTest.createEntity(em);
+//        em.persist(address);
+//        em.flush();
+//        user.setAddress(address);
         return user;
     }
 

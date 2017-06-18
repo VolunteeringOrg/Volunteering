@@ -18,14 +18,17 @@ services:
             - JHIPSTER_REGISTRY_PASSWORD=admin
         ports:
             - 8080:8080
+        links:
+            - myapp-oracle:myapp-oracle
     myapp-oracle:
-        image: sath89/oracle-12c:latest
+        image: sath89/oracle-12c
+#        :latest
         environment:
             - DBCA_TOTAL_MEMORY=1024
             - WEB_CONSOLE=true
     myapp-elasticsearch:
         image: elasticsearch:2.4.1
-    
+
     zookeeper:
         extends:
             file: kafka.yml
