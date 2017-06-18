@@ -1,9 +1,7 @@
 # Save as ~/.gradle/gradle.properties
 # All values without quote
 
-mavenOracleUsername=zalewmic@gmail.com
-## [oracle e-mail address]
+mavenOracleUsername=[oracle e-mail address]
 ##
-mavenOraclePassword=Shoshanim8
-## [oracle password]
+mavenOraclePassword=[oracle password]
 ##
