@@ -158,10 +158,10 @@ repositories {
         }
     }
 }
-dependencies {
-    compile files('./src/main/resources/ojdbc7.jar')
-}
-
+//dependencies {
+//    compile files('./src/main/resources/ojdbc7.jar')
+//}
+//
 dependencies {
     compile "io.github.jhipster:jhipster:${jhipster_server_version}"
     compile "io.dropwizard.metrics:metrics-core:${dropwizard_metrics_version}"

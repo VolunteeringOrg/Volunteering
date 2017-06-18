@@ -28,7 +28,6 @@ services:
             - WEB_CONSOLE=true
     myapp-elasticsearch:
         image: elasticsearch:2.4.1
-
     zookeeper:
         extends:
             file: kafka.yml
