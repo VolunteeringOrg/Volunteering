@@ -107,7 +107,6 @@ public class User extends AbstractAuditingEntity implements Serializable {
 //    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 //    private Set<Application> applications = new HashSet<>();
 
-    //-----temporary
     public User firstName(String firstName) {
         this.firstName = firstName;
         return this;
@@ -124,8 +123,6 @@ public class User extends AbstractAuditingEntity implements Serializable {
         this.password = password;
         return this;
     }
-    //--------------
-
 
     public Long getId() {
         return id;
