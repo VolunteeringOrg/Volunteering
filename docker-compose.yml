@@ -3,11 +3,11 @@ services:
     myapp-app:
         image: myapp
         environment:
-            - SPRING_PROFILES_ACTIVE=prod,swagger
+            - SPRING_PROFILES_ACTIVE=dev,swagger
             - EUREKA_CLIENT_SERVICE-URL_DEFAULTZONE=http://admin:$${jhipster.registry.password}@jhipster-registry:8761/eureka
             - SPRING_CLOUD_CONFIG_URI=http://admin:$${jhipster.registry.password}@jhipster-registry:8761/config
             - SPRING_DATASOURCE_URL=jdbc:oracle:thin:@myapp-oracle:1521:myapp
-            - JHIPSTER_SLEEP=30
+            - JHIPSTER_SLEEP=180
             - SPRING_DATA_ELASTICSEARCH_CLUSTER_NODES=myapp-elasticsearch:9300
             - SPRING_CLOUD_STREAM_KAFKA_BINDER_BROKERS=kafka
             - SPRING_CLOUD_STREAM_KAFKA_BINDER_ZK_NODES=zookeeper
@@ -18,39 +18,44 @@ services:
             - JHIPSTER_REGISTRY_PASSWORD=admin
         ports:
             - 8080:8080
-        links:
-            - myapp-oracle:myapp-oracle
+        depends_on:
+            - myapp-oracle
+        restart: always
     myapp-oracle:
         image: sath89/oracle-12c
-#        :latest
+        volumes:
+             - ~/volumes/jhipster/myapp/oracle/data:/u01/app/oracle
         environment:
             - DBCA_TOTAL_MEMORY=1024
             - WEB_CONSOLE=true
+        ports:
+            - 1580:8080
+            - 1521:1521
+        restart: always
     myapp-elasticsearch:
         image: elasticsearch:2.4.1
-    zookeeper:
-        extends:
-            file: kafka.yml
-            service: zookeeper
-    kafka:
-        extends:
-            file: kafka.yml
-            service: kafka
-    jhipster-registry:
-        extends:
-            file: jhipster-registry.yml
-            service: jhipster-registry
-
-    jhipster-elasticsearch:
-        extends:
-            file: jhipster-console.yml
-            service: jhipster-elasticsearch
-    jhipster-logstash:
-        extends:
-          file: jhipster-console.yml
-          service: jhipster-logstash
-    jhipster-console:
-        extends:
-            file: jhipster-console.yml
-            service: jhipster-console
+#    zookeeper:
+#        extends:
+#            file: kafka.yml
+#            service: zookeeper
+#    kafka:
+#        extends:
+#            file: kafka.yml
+#            service: kafka
+#    jhipster-registry:
+#        extends:
+#            file: jhipster-registry.yml
+#            service: jhipster-registry
+#    jhipster-elasticsearch:
+#        extends:
+#            file: jhipster-console.yml
+#            service: jhipster-elasticsearch
+#    jhipster-logstash:
+#        extends:
+#          file: jhipster-console.yml
+#          service: jhipster-logstash
+#    jhipster-console:
+#        extends:
+#            file: jhipster-console.yml
+#            service: jhipster-console
 

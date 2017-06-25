@@ -3,9 +3,19 @@ import org.gradle.internal.os.OperatingSystem
 task buildDocker(type: Exec) {
     doFirst {
         copy {
-            from "src/main/docker/"
+            from projectDir
             into "build/docker/"
-            include "*"
+            include "*.yml"
+        }
+        copy {
+            from projectDir
+            into "build/docker/"
+            include "Dockerfile"
+        }
+        copy {
+            from projectDir
+            into "build/docker/"
+            include "waiting.sh"
         }
         copy {
             from "build/libs"
@@ -13,9 +23,5 @@ task buildDocker(type: Exec) {
             include "*.war*"
         }
     }
-    if (OperatingSystem.current().isWindows()) {
-        commandLine 'cmd', '/c', 'docker', 'image', 'build', '-f', 'build/docker/Dockerfile', '-t', 'myapp', 'build/docker/'
-    } else {
-        commandLine 'docker', 'image', 'build', '-f', 'build/docker/Dockerfile', '-t', 'myapp', 'build/docker/'
-    }
+    commandLine 'docker', 'image', 'build', '-f', 'build/docker/Dockerfile', '-t', 'myapp', 'build/docker/'
 }

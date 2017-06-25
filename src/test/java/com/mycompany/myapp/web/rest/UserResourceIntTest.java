@@ -95,11 +95,6 @@ public class UserResourceIntTest {
             .lastName(DEFAULT_LAST_NAME)
             .login(DEFAULT_LOGIN)
             .password(DEFAULT_PASSWORD);
-        // Add required entity
-//        Address address = AddressResourceIntTest.createEntity(em);
-//        em.persist(address);
-//        em.flush();
-//        user.setAddress(address);
         return user;
     }
 
